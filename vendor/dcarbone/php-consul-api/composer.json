@@ -1,0 +1,51 @@
+{
+  "name": "dcarbone/php-consul-api",
+  "type": "library",
+  "description": "PHP client for the Consul HTTP API",
+  "homepage": "https://github.com/dcarbone/php-consul-api",
+  "license": "Apache-2.0",
+  "authors": [
+    {
+      "name": "Daniel Carbone",
+      "email": "daniel.p.carbone@gmail.com"
+    }
+  ],
+  "keywords": [
+    "consul",
+    "consul-api",
+    "php-consul-api"
+  ],
+  "require": {
+    "php": "8.*",
+    "ext-json": "*",
+    "dcarbone/gotime": "v0.5.*",
+    "dcarbone/gohttp": "v0.3.*",
+    "guzzlehttp/guzzle": "^7.4",
+    "guzzlehttp/psr7": "^2.4"
+  },
+  "autoload": {
+    "files": [
+      "src/Coordinate/funcs.php",
+      "src/funcs.php"
+    ],
+    "psr-4": {
+      "DCarbone\\PHPConsulAPI\\": "src/"
+    }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "@stable"
+  },
+  "autoload-dev": {
+    "files": [
+      "src/Coordinate/funcs.php",
+      "tests/funcs.php"
+    ],
+    "psr-4": {
+      "DCarbone\\PHPConsulAPI\\": "src/",
+      "DCarbone\\PHPConsulAPITests\\": "tests/"
+    }
+  },
+  "scripts": {
+    "php-cs-fixer": "vendor/bin/php-cs-fixer fix --config tools/php-cs-fixer/php-consul-api-rules.php_cs src/"
+  }
+}

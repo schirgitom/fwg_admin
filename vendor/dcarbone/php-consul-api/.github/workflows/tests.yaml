@@ -1,0 +1,65 @@
+name: "Tests"
+
+on:
+  pull_request:
+    branches:
+      - master
+    paths:
+      - '**.php'
+      - 'composer.json'
+      - 'composer.lock'
+      - 'phpunit.xml'
+      - '.github/workflows/tests.yaml'
+  push:
+    branches:
+      - master
+    paths:
+      - '**.php'
+      - 'composer.json'
+      - 'composer.lock'
+      - 'phpunit.xml'
+      - '.github/workflows/tests.yaml'
+
+env:
+  CONSUL_HTTP_ADDR: "127.0.0.1:8500"
+  CONSUL_VERSION: '1.17.2'
+
+jobs:
+  tests:
+    runs-on: ubuntu-22.04
+    strategy:
+      matrix:
+        php-version: ["8.0", "8.1", "8.2"]
+
+    name: Tests - PHP ${{ matrix.php-version }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+          extensions: json
+          ini-values: precision=14,serialize_precision=-1
+
+      - name: 'Composer update'
+        # language=bash
+        run: |
+          composer update \
+            --no-ansi \
+            --no-interaction \
+            --no-scripts \
+            --no-progress
+
+      - name: 'Install Consul'
+        # language=bash
+        run: |
+          wget https://releases.hashicorp.com/consul/${{ env.CONSUL_VERSION }}/consul_${{ env.CONSUL_VERSION }}_linux_amd64.zip
+          unzip consul_${{ env.CONSUL_VERSION }}_linux_amd64.zip -d /usr/local/bin/
+          rm consul_${{ env.CONSUL_VERSION }}_linux_amd64.zip
+          chmod +x /usr/local/bin/consul
+          consul --version
+
+      - name: 'Execute tests'
+        # language=bash
+        run: |
+          ./vendor/bin/phpunit -c phpunit.xml

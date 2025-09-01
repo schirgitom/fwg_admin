@@ -1,0 +1,5 @@
+{
+    "require": {
+        "dcarbone/php-consul-api": "^2.0"
+    }
+}

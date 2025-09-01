@@ -1,0 +1,29 @@
+{
+  "name": "dcarbone/gohttp",
+  "type": "library",
+  "license": "MIT",
+  "description": "Golang-like http class(es) for PHP 7.0+",
+  "homepage": "https://github.com/dcarbone/gohttp",
+  "authors": [
+    {
+      "name": "The GOLANG Squad",
+      "homepage": "https://golang.org/"
+    },
+    {
+      "name": "Daniel Carbone",
+      "email": "daniel.p.carbone@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.0",
+    "ext-json": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "DCarbone\\Go\\HTTP\\": "src/"
+    },
+    "files": [
+      "src/http_ns.php"
+    ]
+  }
+}
