@@ -14,4 +14,5 @@ return array(
     'DCarbone\\PHPConsulAPI\\' => array($vendorDir . '/dcarbone/php-consul-api/src'),
     'DCarbone\\Go\\HTTP\\' => array($vendorDir . '/dcarbone/gohttp/src'),
     'DCarbone\\Go\\' => array($vendorDir . '/dcarbone/gotime/src'),
+    'App\\' => array($baseDir . '/src'),
 );

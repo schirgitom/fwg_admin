@@ -34,6 +34,10 @@ class ComposerStaticInit2d7b79d802d0cfab85d55716033f5ae7
             'DCarbone\\Go\\HTTP\\' => 17,
             'DCarbone\\Go\\' => 12,
         ),
+        'A' => 
+        array (
+            'App\\' => 4,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
@@ -69,6 +73,10 @@ class ComposerStaticInit2d7b79d802d0cfab85d55716033f5ae7
         'DCarbone\\Go\\' => 
         array (
             0 => __DIR__ . '/..' . '/dcarbone/gotime/src',
+        ),
+        'App\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src',
         ),
     );
 

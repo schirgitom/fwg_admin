@@ -2,6 +2,7 @@
 require __DIR__ . '/vendor/autoload.php';
 include 'header.php';
 
+use App\Settings;
 
 ?>
 <div class="container">
@@ -10,9 +11,17 @@ include 'header.php';
 </div>
 
 <?php
-$consul = new ConsulKV("127.0.0.1:8500");
-$value = $consul->get("test/key1");
-echo "Wert: " . $value . PHP_EOL;
+$appConfig = require __DIR__ . '/config/config.php';
+
+// 2) Settings initialisieren
+Settings::init($appConfig);
+
+// 3) Werte holen (JSON wird im Hintergrund aus Consul geholt/parsed/gecached)
+$dbHost   = Settings::all();
+
+var_dump($dbHost);
+
+//echo "Wert: " . $dbHost . PHP_EOL;
 ?>
 
 <!-- Bootstrap JS + Popper -->
