@@ -81,6 +81,7 @@
         }
     </style>
     <link href="node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="/node_modules/datatables.net-bs5/css/dataTables.bootstrap5.min.css">
 </head>
 <body>
 <main>
@@ -96,9 +97,9 @@
                 <svg class="bi me-2" width="40" height="32" aria-hidden="true">
                     <use xlink:href="#bootstrap"></use>
                 </svg>
-                <span class="fs-4">Simple header</span>
+                <span class="fs-4">FWG Admin Portal</span>
             </a>
-            <ul class="nav nav-pills">
+            <!--<ul class="nav nav-pills">
                 <li class="nav-item">
                     <a href="#" class="nav-link active" aria-current="page">Home</a>
                 </li>
@@ -106,7 +107,7 @@
                 <li class="nav-item"><a href="#" class="nav-link">Pricing</a></li>
                 <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li>
                 <li class="nav-item"><a href="#" class="nav-link">About</a></li>
-            </ul>
+            </ul>-->
         </header>
     </div>
 </main>
