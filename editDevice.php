@@ -41,27 +41,29 @@ if (!$deviceId) {
 }
 
 $errorMsg = null;
+$successMsg = null;
 
 // POST: speichern
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $payload = [
-    'deviceID'    => $_POST['deviceID']    ?? $deviceId,
-    'deviceName'  => $_POST['deviceName']  ?? '',
+    'deviceID'    => $_POST['deviceID'],
     'active'      => isset($_POST['active']) ? ($_POST['active'] === 'true' || $_POST['active'] === '1') : false,
     'deviceVendor'=> $_POST['deviceVendor']?? '',
     'fK_Block'    => isset($_POST['fK_Block']) ? (int)$_POST['fK_Block'] : null,
+      'FK_Customer' => $_POST['fK_Customer']
   ];
 
   try {
     // PUT /api/HeatDevice/{id}
-    $resp = $guzzle->request('PUT', "api/HeatDevice/{$deviceId}", [
+    $resp = $guzzle->request('PATCH', "api/HeatDevice/{$deviceId}", [
       'headers' => [ 'Accept' => 'application/json', 'Content-Type' => 'application/json' ],
       'json'    => $payload,
       'timeout' => 10,
     ]);
     // Erfolg → zurück zur Liste
-    header('Location: heat-devices.php?updated=1');
-    exit;
+    //header('Location: index.php?updated=1');
+      $successMsg = "Erfolgreich aktualisiert";
+   // exit;
   } catch (\Throwable $e) {
     $errorMsg = "Speichern fehlgeschlagen: " . $e->getMessage();
   }
@@ -264,17 +266,22 @@ include 'header.php';
     <div class="alert alert-danger"><?= htmlspecialchars($errorMsg) ?></div>
   <?php endif; ?>
 
+
+    <?php if ($successMsg): ?>
+        <div class="alert alert-success"><?= htmlspecialchars($successMsg) ?></div>
+    <?php endif; ?>
+
   <form method="post" class="card">
     <div class="card-body">
       <div class="row g-3">
         <div class="col-md-2">
-          <label class="form-label">DeviceID</label>
-          <input name="deviceID" value="<?= htmlspecialchars($device['id'] ?? $deviceId) ?>" class="form-control" readonly>
+          <label class="form-label">ID</label>
+          <input name="ID" value="<?= htmlspecialchars($device['id'] ?? $deviceId) ?>" class="form-control" readonly>
         </div>
 
         <div class="col-md-6">
           <label class="form-label">Device EUI</label>
-          <input name="deviceName" value="<?= htmlspecialchars($device['device_id'] ?? '') ?>" class="form-control" required>
+          <input name="deviceID" value="<?= htmlspecialchars($device['device_id'] ?? '') ?>" class="form-control" required>
         </div>
 
         <div class="col-md-4">
