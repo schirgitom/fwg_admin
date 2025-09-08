@@ -116,9 +116,10 @@ $jsBlocks = json_encode($blocks, JSON_UNESCAPED_UNICODE);
 $jsLines  = json_encode($lines,  JSON_UNESCAPED_UNICODE);
 $jsCurrLineId = json_encode($currentLineId);
 
+/*
 var_dump($device);
     echo "------------";
-    var_dump($customer);
+    var_dump($customer);*/
 include 'header.php';
 
 
@@ -321,7 +322,7 @@ include 'header.php';
               </div>
               <!-- hier speichern wir die gewählte Kunden-ID fürs Submit -->
               <input type="hidden" name="fK_Customer" id="customerIdHidden"
-                     value="<?= htmlspecialchars($device['fK_Customer'] ?? $device['fkCustomer'] ?? '') ?>">
+                     value="<?= htmlspecialchars($device['fK_Customer'] ?? $device['f_k_customer'] ?? '') ?>">
           </div>
 
         <div class="col-md-3">
