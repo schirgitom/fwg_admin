@@ -259,7 +259,7 @@ include 'header.php';
   <div class="d-flex align-items-center justify-content-between mb-3">
     <h1 class="h3 mb-0">Gerät bearbeiten - <?php echo $device['device_id'] ?> - (<?php echo $customerName ?>)</h1>
     <div>
-      <a href="heat-devices.php" class="btn btn-outline-secondary btn-sm">Zur Übersicht</a>
+      <a href="index.php" class="btn btn-outline-secondary btn-sm">Zur Übersicht</a>
     </div>
   </div>
 
@@ -366,7 +366,7 @@ include 'header.php';
 
     <div class="card-footer d-flex gap-2">
       <button type="submit" class="btn btn-primary">Speichern</button>
-      <a href="heat-devices.php" class="btn btn-outline-secondary">Abbrechen</a>
+      <a href="index.php" class="btn btn-outline-secondary">Abbrechen</a>
     </div>
   </form>
 </div>
@@ -460,7 +460,7 @@ include 'header.php';
             toggle(table,  false);
 
             try {
-                const res = await fetch('GetCustomers.php', { headers: { 'Accept': 'application/json' }});
+                const res = await fetch('getCustomers.php', { headers: { 'Accept': 'application/json' }});
                 if (!res.ok) throw new Error('HTTP ' + res.status);
                 const json = await res.json();
                 if (!Array.isArray(json)) throw new Error('Unerwartetes Format (kein Array)');
@@ -725,10 +725,12 @@ include 'header.php';
                 if (!res.ok) throw new Error('HTTP ' + res.status);
                 const created = await res.json();
 
+
+
                 // In Liste übernehmen
                 const newCustomer = {
-                    id: created.id ?? created.customerId ?? created.customerID,
-                    customerNumber: created.customerNumber ?? data.customerNumber,
+                    id: created.data.id ?? created.customerId ?? created.customerID,
+                    customerNumber: created.data.customerNumber ?? data.data.customerNumber,
                     name: created.name ?? created.customerName ?? data.name,
                     adresse: created.adresse ?? created.address ?? data.adresse,
                     sendToHeidi: created.sendToHeidi === true || data.sendToHeidi === true
@@ -740,6 +742,10 @@ include 'header.php';
                 $('btnCreateCustomer').disabled = false;
 
                 // Direkt auswählen & Modal schließen
+                console.log(newCustomer);
+
+
+
                 selectCustomerById(newCustomer.id);
             } catch (err) {
                 $('createStatus').textContent = 'Fehler: ' + err.message;

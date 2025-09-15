@@ -49,7 +49,7 @@ try {
             'customerNumber' => $customerNumber,
             'name'           => $name,
             'adresse'        => $adresse,
-            'sendToHeidi'    => $sendToHeidi,
+            'sendToHeidi'    => $sendToHeidi
         ],
     ]);
 

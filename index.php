@@ -93,7 +93,7 @@ use App\Settings;
 
 <script>
     // ====== Konfiguration ======
-    const ENDPOINT = 'GetHeatDevices.php'; // liefert Array von Devices
+    const ENDPOINT = 'getHeatDevices.php'; // liefert Array von Devices
 
     // ====== Utils ======
     const el = (id) => document.getElementById(id);
