@@ -241,9 +241,21 @@ include 'customerDialog.php'
     <div class="card-footer d-flex gap-2">
       <button type="submit" class="btn btn-primary">Speichern</button>
       <a href="index.php" class="btn btn-outline-secondary">Abbrechen</a>
+        <button type="button" id="btnMigrate" class="btn btn-outline-warning ms-auto">
+            Visualisierung aktualisieren
+        </button>
     </div>
   </form>
 </div>
+
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1100">
+        <div id="actionToast" class="toast align-items-center border-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div id="toastBody" class="toast-body text-white">...</div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Schließen"></button>
+            </div>
+        </div>
+    </div>
 
 <script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script>
@@ -255,6 +267,25 @@ include 'customerDialog.php'
   // Hilfs-Maps
   const lineSelect  = document.getElementById('lineSelect');
   const blockSelect = document.getElementById('blockSelect');
+
+  function showToast(message, type = 'success') {
+      const toastEl = document.getElementById('actionToast');
+      const toastBody = document.getElementById('toastBody');
+
+      // Farbe je nach Typ setzen
+      let bgClass = 'bg-success';
+      if (type === 'error') bgClass = 'bg-danger';
+      if (type === 'warning') bgClass = 'bg-warning text-dark';
+      if (type === 'info') bgClass = 'bg-info text-dark';
+
+      toastBody.className = `toast-body text-white ${bgClass.includes('text-dark') ? 'text-dark' : 'text-white'}`;
+      toastEl.className = `toast align-items-center border-0 ${bgClass}`;
+
+      toastBody.textContent = message;
+
+      const toast = new bootstrap.Toast(toastEl, { delay: 4000 });
+      toast.show();
+  }
 
   /** Füllt den Block-Select anhand der aktuell gewählten Line */
   function populateBlocksForLine(selectedLineId, preselectBlockId = null) {
@@ -286,6 +317,29 @@ include 'customerDialog.php'
 
       blockSelect.disabled = false;
   }
+
+  document.getElementById('btnMigrate').addEventListener('click', async () => {
+      const deviceEUI = document.getElementById('editDeviceId')?.value
+          || document.querySelector('input[name="deviceID"]')?.value;
+
+      if (!deviceEUI) {
+          alert('DeviceEUI nicht gefunden.');
+          return;
+      }
+
+      try {
+          const res = await fetch(`MigrateHeatDevice.php?id=${encodeURIComponent(deviceEUI)}`);
+
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          const data = await res.json().catch(() => ({}));
+
+          showToast('Migration erfolgreich ✅', 'success');
+          console.log('Migrate Response:', data);
+
+      } catch (err) {
+          showToast('Fehler bei Migration: ' + err.message, 'error');
+      }
+  });
 
   /** Wenn die Line geändert wird, Blocks nachziehen */
   lineSelect.addEventListener('change', () => {
