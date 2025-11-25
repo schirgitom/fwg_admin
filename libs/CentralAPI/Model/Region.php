@@ -1,6 +1,6 @@
 <?php
 /**
- * Line
+ * Region
  *
  * PHP version 8.1
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \FWGCentralAPI\ObjectSerializer;
 
 /**
- * Line Class Doc Comment
+ * Region Class Doc Comment
  *
  * @category Class
  * @package  FWGCentralAPI
@@ -40,7 +40,7 @@ use \FWGCentralAPI\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class Line implements ModelInterface, ArrayAccess, \JsonSerializable
+class Region implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class Line implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Line';
+    protected static $openAPIModelName = 'Region';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,7 +57,7 @@ class Line implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'line_name' => 'string',
+        'region_name' => 'string',
         'host' => 'string',
         'port' => 'int',
         'username' => 'string',
@@ -79,7 +79,7 @@ class Line implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'line_name' => null,
+        'region_name' => null,
         'host' => null,
         'port' => 'int32',
         'username' => null,
@@ -99,7 +99,7 @@ class Line implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'line_name' => false,
+        'region_name' => false,
         'host' => false,
         'port' => false,
         'username' => false,
@@ -199,7 +199,7 @@ class Line implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'line_name' => 'lineName',
+        'region_name' => 'regionName',
         'host' => 'host',
         'port' => 'port',
         'username' => 'username',
@@ -219,7 +219,7 @@ class Line implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'line_name' => 'setLineName',
+        'region_name' => 'setRegionName',
         'host' => 'setHost',
         'port' => 'setPort',
         'username' => 'setUsername',
@@ -239,7 +239,7 @@ class Line implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'line_name' => 'getLineName',
+        'region_name' => 'getRegionName',
         'host' => 'getHost',
         'port' => 'getPort',
         'username' => 'getUsername',
@@ -310,7 +310,7 @@ class Line implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('line_name', $data ?? [], null);
+        $this->setIfExists('region_name', $data ?? [], null);
         $this->setIfExists('host', $data ?? [], null);
         $this->setIfExists('port', $data ?? [], null);
         $this->setIfExists('username', $data ?? [], null);
@@ -351,11 +351,11 @@ class Line implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['line_name'] === null) {
-            $invalidProperties[] = "'line_name' can't be null";
+        if ($this->container['region_name'] === null) {
+            $invalidProperties[] = "'region_name' can't be null";
         }
-        if ((mb_strlen($this->container['line_name']) < 1)) {
-            $invalidProperties[] = "invalid value for 'line_name', the character length must be bigger than or equal to 1.";
+        if ((mb_strlen($this->container['region_name']) < 1)) {
+            $invalidProperties[] = "invalid value for 'region_name', the character length must be bigger than or equal to 1.";
         }
 
         if ($this->container['host'] === null) {
@@ -398,33 +398,33 @@ class Line implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets line_name
+     * Gets region_name
      *
      * @return string
      */
-    public function getLineName()
+    public function getRegionName()
     {
-        return $this->container['line_name'];
+        return $this->container['region_name'];
     }
 
     /**
-     * Sets line_name
+     * Sets region_name
      *
-     * @param string $line_name line_name
+     * @param string $region_name region_name
      *
      * @return self
      */
-    public function setLineName($line_name)
+    public function setRegionName($region_name)
     {
-        if (is_null($line_name)) {
-            throw new \InvalidArgumentException('non-nullable line_name cannot be null');
+        if (is_null($region_name)) {
+            throw new \InvalidArgumentException('non-nullable region_name cannot be null');
         }
 
-        if ((mb_strlen($line_name) < 1)) {
-            throw new \InvalidArgumentException('invalid length for $line_name when calling Line., must be bigger than or equal to 1.');
+        if ((mb_strlen($region_name) < 1)) {
+            throw new \InvalidArgumentException('invalid length for $region_name when calling Region., must be bigger than or equal to 1.');
         }
 
-        $this->container['line_name'] = $line_name;
+        $this->container['region_name'] = $region_name;
 
         return $this;
     }
@@ -453,7 +453,7 @@ class Line implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         if ((mb_strlen($host) < 1)) {
-            throw new \InvalidArgumentException('invalid length for $host when calling Line., must be bigger than or equal to 1.');
+            throw new \InvalidArgumentException('invalid length for $host when calling Region., must be bigger than or equal to 1.');
         }
 
         $this->container['host'] = $host;
@@ -512,7 +512,7 @@ class Line implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         if ((mb_strlen($username) < 1)) {
-            throw new \InvalidArgumentException('invalid length for $username when calling Line., must be bigger than or equal to 1.');
+            throw new \InvalidArgumentException('invalid length for $username when calling Region., must be bigger than or equal to 1.');
         }
 
         $this->container['username'] = $username;
@@ -544,7 +544,7 @@ class Line implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         if ((mb_strlen($password) < 1)) {
-            throw new \InvalidArgumentException('invalid length for $password when calling Line., must be bigger than or equal to 1.');
+            throw new \InvalidArgumentException('invalid length for $password when calling Region., must be bigger than or equal to 1.');
         }
 
         $this->container['password'] = $password;

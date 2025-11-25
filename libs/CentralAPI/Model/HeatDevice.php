@@ -59,8 +59,8 @@ class HeatDevice implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'device_id' => 'string',
         'topic' => 'string',
-        'f_k_block' => 'int',
         'device_vendor' => 'string',
+        'f_k_region' => 'int',
         'f_k_customer' => 'int',
         'active' => 'bool',
         'device_name' => 'string',
@@ -79,8 +79,8 @@ class HeatDevice implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'device_id' => null,
         'topic' => null,
-        'f_k_block' => 'int32',
         'device_vendor' => null,
+        'f_k_region' => 'int32',
         'f_k_customer' => 'int32',
         'active' => null,
         'device_name' => null,
@@ -97,8 +97,8 @@ class HeatDevice implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static array $openAPINullables = [
         'device_id' => false,
         'topic' => false,
-        'f_k_block' => false,
         'device_vendor' => false,
+        'f_k_region' => false,
         'f_k_customer' => false,
         'active' => false,
         'device_name' => false,
@@ -195,8 +195,8 @@ class HeatDevice implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $attributeMap = [
         'device_id' => 'deviceID',
         'topic' => 'topic',
-        'f_k_block' => 'fK_Block',
         'device_vendor' => 'deviceVendor',
+        'f_k_region' => 'fK_Region',
         'f_k_customer' => 'fK_Customer',
         'active' => 'active',
         'device_name' => 'deviceName',
@@ -213,8 +213,8 @@ class HeatDevice implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $setters = [
         'device_id' => 'setDeviceId',
         'topic' => 'setTopic',
-        'f_k_block' => 'setFKBlock',
         'device_vendor' => 'setDeviceVendor',
+        'f_k_region' => 'setFKRegion',
         'f_k_customer' => 'setFKCustomer',
         'active' => 'setActive',
         'device_name' => 'setDeviceName',
@@ -231,8 +231,8 @@ class HeatDevice implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $getters = [
         'device_id' => 'getDeviceId',
         'topic' => 'getTopic',
-        'f_k_block' => 'getFKBlock',
         'device_vendor' => 'getDeviceVendor',
+        'f_k_region' => 'getFKRegion',
         'f_k_customer' => 'getFKCustomer',
         'active' => 'getActive',
         'device_name' => 'getDeviceName',
@@ -300,8 +300,8 @@ class HeatDevice implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->setIfExists('device_id', $data ?? [], null);
         $this->setIfExists('topic', $data ?? [], null);
-        $this->setIfExists('f_k_block', $data ?? [], null);
         $this->setIfExists('device_vendor', $data ?? [], null);
+        $this->setIfExists('f_k_region', $data ?? [], null);
         $this->setIfExists('f_k_customer', $data ?? [], null);
         $this->setIfExists('active', $data ?? [], null);
         $this->setIfExists('device_name', $data ?? [], null);
@@ -351,9 +351,6 @@ class HeatDevice implements ModelInterface, ArrayAccess, \JsonSerializable
             $invalidProperties[] = "invalid value for 'topic', the character length must be bigger than or equal to 1.";
         }
 
-        if ($this->container['f_k_block'] === null) {
-            $invalidProperties[] = "'f_k_block' can't be null";
-        }
         if ($this->container['device_vendor'] === null) {
             $invalidProperties[] = "'device_vendor' can't be null";
         }
@@ -361,6 +358,9 @@ class HeatDevice implements ModelInterface, ArrayAccess, \JsonSerializable
             $invalidProperties[] = "invalid value for 'device_vendor', the character length must be bigger than or equal to 1.";
         }
 
+        if ($this->container['f_k_region'] === null) {
+            $invalidProperties[] = "'f_k_region' can't be null";
+        }
         if ($this->container['f_k_customer'] === null) {
             $invalidProperties[] = "'f_k_customer' can't be null";
         }
@@ -454,33 +454,6 @@ class HeatDevice implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets f_k_block
-     *
-     * @return int
-     */
-    public function getFKBlock()
-    {
-        return $this->container['f_k_block'];
-    }
-
-    /**
-     * Sets f_k_block
-     *
-     * @param int $f_k_block f_k_block
-     *
-     * @return self
-     */
-    public function setFKBlock($f_k_block)
-    {
-        if (is_null($f_k_block)) {
-            throw new \InvalidArgumentException('non-nullable f_k_block cannot be null');
-        }
-        $this->container['f_k_block'] = $f_k_block;
-
-        return $this;
-    }
-
-    /**
      * Gets device_vendor
      *
      * @return string
@@ -508,6 +481,33 @@ class HeatDevice implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         $this->container['device_vendor'] = $device_vendor;
+
+        return $this;
+    }
+
+    /**
+     * Gets f_k_region
+     *
+     * @return int
+     */
+    public function getFKRegion()
+    {
+        return $this->container['f_k_region'];
+    }
+
+    /**
+     * Sets f_k_region
+     *
+     * @param int $f_k_region f_k_region
+     *
+     * @return self
+     */
+    public function setFKRegion($f_k_region)
+    {
+        if (is_null($f_k_region)) {
+            throw new \InvalidArgumentException('non-nullable f_k_region cannot be null');
+        }
+        $this->container['f_k_region'] = $f_k_region;
 
         return $this;
     }

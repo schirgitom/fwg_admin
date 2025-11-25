@@ -2,7 +2,7 @@
 return [
     'consul' => [
         // Adresse deines Consul-Servers
-        'address' => '10.150.20.103:8500',
+        'address' => '127.0.0.1:8500',
         // Optional: 'https' wenn nötig
         'scheme'  => 'http',
         // Optional: ACL-Token, falls du eines brauchst, sonst null
