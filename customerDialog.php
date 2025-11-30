@@ -50,8 +50,8 @@
                                 <thead class="table-light">
                                 <tr>
                                     <th style="width:12rem;">Kundennummer</th>
-                                    <th>Name</th>
                                     <th>Adresse</th>
+                                    <th>Zusatzinfo</th>
                                     <th>Heidi</th>
                                     <th style="width:1%"></th>
                                 </tr>
@@ -69,11 +69,11 @@
                                 <input name="customerNumber" class="form-control" required>
                             </div>
                             <div class="col-md-8">
-                                <label class="form-label">Name</label>
+                                <label class="form-label">Adresse</label>
                                 <input name="name" class="form-control" required>
                             </div>
                             <div class="col-12">
-                                <label class="form-label">Adresse</label>
+                                <label class="form-label">Zusatzinfo</label>
                                 <input name="adresse" class="form-control">
                             </div>
                             <div class="col-md-4">
@@ -98,11 +98,11 @@
                                 <input id="ecNumber" class="form-control" required readonly>
                             </div>
                             <div class="col-md-8">
-                                <label class="form-label">Name</label>
+                                <label class="form-label">Adresse</label>
                                 <input id="ecName" class="form-control" required disabled>
                             </div>
                             <div class="col-12">
-                                <label class="form-label">Adresse</label>
+                                <label class="form-label">Zusatzinfo</label>
                                 <input id="ecAdresse" class="form-control" disabled>
                             </div>
                             <div class="col-md-4">
