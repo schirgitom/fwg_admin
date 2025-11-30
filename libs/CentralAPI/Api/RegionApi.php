@@ -1,6 +1,6 @@
 <?php
 /**
- * BlockApi
+ * RegionApi
  * PHP version 8.1
  *
  * @category Class
@@ -43,14 +43,14 @@ use FWGCentralAPI\HeaderSelector;
 use FWGCentralAPI\ObjectSerializer;
 
 /**
- * BlockApi Class Doc Comment
+ * RegionApi Class Doc Comment
  *
  * @category Class
  * @package  FWGCentralAPI
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class BlockApi
+class RegionApi
 {
     /**
      * @var ClientInterface
@@ -74,21 +74,21 @@ class BlockApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'apiBlockAllGet' => [
+        'apiRegionAllGet' => [
             'application/json',
         ],
-        'apiBlockGetByNameBlockNameGet' => [
+        'apiRegionGetByNameLineNameGet' => [
             'application/json',
         ],
-        'apiBlockIdGet' => [
+        'apiRegionIdGet' => [
             'application/json',
         ],
-        'apiBlockIdPatch' => [
+        'apiRegionIdPatch' => [
             'application/json',
             'text/json',
             'application/*+json',
         ],
-        'apiBlockPost' => [
+        'apiRegionPost' => [
             'application/json',
             'text/json',
             'application/*+json',
@@ -142,32 +142,32 @@ class BlockApi
     }
 
     /**
-     * Operation apiBlockAllGet
+     * Operation apiRegionAllGet
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiBlockAllGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiRegionAllGet'] to see the possible values for this operation
      *
      * @throws \FWGCentralAPI\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \FWGCentralAPI\Model\Block[]
+     * @return \FWGCentralAPI\Model\Region[]
      */
-    public function apiBlockAllGet(string $contentType = self::contentTypes['apiBlockAllGet'][0])
+    public function apiRegionAllGet(string $contentType = self::contentTypes['apiRegionAllGet'][0])
     {
-        list($response) = $this->apiBlockAllGetWithHttpInfo($contentType);
+        list($response) = $this->apiRegionAllGetWithHttpInfo($contentType);
         return $response;
     }
 
     /**
-     * Operation apiBlockAllGetWithHttpInfo
+     * Operation apiRegionAllGetWithHttpInfo
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiBlockAllGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiRegionAllGet'] to see the possible values for this operation
      *
      * @throws \FWGCentralAPI\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \FWGCentralAPI\Model\Block[], HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FWGCentralAPI\Model\Region[], HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiBlockAllGetWithHttpInfo(string $contentType = self::contentTypes['apiBlockAllGet'][0])
+    public function apiRegionAllGetWithHttpInfo(string $contentType = self::contentTypes['apiRegionAllGet'][0])
     {
-        $request = $this->apiBlockAllGetRequest($contentType);
+        $request = $this->apiRegionAllGetRequest($contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -195,7 +195,7 @@ class BlockApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\FWGCentralAPI\Model\Block[]',
+                        '\FWGCentralAPI\Model\Region[]',
                         $request,
                         $response,
                     );
@@ -217,7 +217,7 @@ class BlockApi
             }
 
             return $this->handleResponseWithDataType(
-                '\FWGCentralAPI\Model\Block[]',
+                '\FWGCentralAPI\Model\Region[]',
                 $request,
                 $response,
             );
@@ -226,7 +226,7 @@ class BlockApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\FWGCentralAPI\Model\Block[]',
+                        '\FWGCentralAPI\Model\Region[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -239,16 +239,16 @@ class BlockApi
     }
 
     /**
-     * Operation apiBlockAllGetAsync
+     * Operation apiRegionAllGetAsync
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiBlockAllGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiRegionAllGet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiBlockAllGetAsync(string $contentType = self::contentTypes['apiBlockAllGet'][0])
+    public function apiRegionAllGetAsync(string $contentType = self::contentTypes['apiRegionAllGet'][0])
     {
-        return $this->apiBlockAllGetAsyncWithHttpInfo($contentType)
+        return $this->apiRegionAllGetAsyncWithHttpInfo($contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -257,17 +257,17 @@ class BlockApi
     }
 
     /**
-     * Operation apiBlockAllGetAsyncWithHttpInfo
+     * Operation apiRegionAllGetAsyncWithHttpInfo
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiBlockAllGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiRegionAllGet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiBlockAllGetAsyncWithHttpInfo(string $contentType = self::contentTypes['apiBlockAllGet'][0])
+    public function apiRegionAllGetAsyncWithHttpInfo(string $contentType = self::contentTypes['apiRegionAllGet'][0])
     {
-        $returnType = '\FWGCentralAPI\Model\Block[]';
-        $request = $this->apiBlockAllGetRequest($contentType);
+        $returnType = '\FWGCentralAPI\Model\Region[]';
+        $request = $this->apiRegionAllGetRequest($contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -306,18 +306,18 @@ class BlockApi
     }
 
     /**
-     * Create request for operation 'apiBlockAllGet'
+     * Create request for operation 'apiRegionAllGet'
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiBlockAllGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiRegionAllGet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function apiBlockAllGetRequest(string $contentType = self::contentTypes['apiBlockAllGet'][0])
+    public function apiRegionAllGetRequest(string $contentType = self::contentTypes['apiRegionAllGet'][0])
     {
 
 
-        $resourcePath = '/api/Block/All';
+        $resourcePath = '/api/Region/All';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -382,34 +382,34 @@ class BlockApi
     }
 
     /**
-     * Operation apiBlockGetByNameBlockNameGet
+     * Operation apiRegionGetByNameLineNameGet
      *
-     * @param  string $block_name block_name (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiBlockGetByNameBlockNameGet'] to see the possible values for this operation
+     * @param  string $line_name line_name (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiRegionGetByNameLineNameGet'] to see the possible values for this operation
      *
      * @throws \FWGCentralAPI\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \FWGCentralAPI\Model\Block
+     * @return \FWGCentralAPI\Model\Region
      */
-    public function apiBlockGetByNameBlockNameGet($block_name, string $contentType = self::contentTypes['apiBlockGetByNameBlockNameGet'][0])
+    public function apiRegionGetByNameLineNameGet($line_name, string $contentType = self::contentTypes['apiRegionGetByNameLineNameGet'][0])
     {
-        list($response) = $this->apiBlockGetByNameBlockNameGetWithHttpInfo($block_name, $contentType);
+        list($response) = $this->apiRegionGetByNameLineNameGetWithHttpInfo($line_name, $contentType);
         return $response;
     }
 
     /**
-     * Operation apiBlockGetByNameBlockNameGetWithHttpInfo
+     * Operation apiRegionGetByNameLineNameGetWithHttpInfo
      *
-     * @param  string $block_name (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiBlockGetByNameBlockNameGet'] to see the possible values for this operation
+     * @param  string $line_name (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiRegionGetByNameLineNameGet'] to see the possible values for this operation
      *
      * @throws \FWGCentralAPI\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \FWGCentralAPI\Model\Block, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FWGCentralAPI\Model\Region, HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiBlockGetByNameBlockNameGetWithHttpInfo($block_name, string $contentType = self::contentTypes['apiBlockGetByNameBlockNameGet'][0])
+    public function apiRegionGetByNameLineNameGetWithHttpInfo($line_name, string $contentType = self::contentTypes['apiRegionGetByNameLineNameGet'][0])
     {
-        $request = $this->apiBlockGetByNameBlockNameGetRequest($block_name, $contentType);
+        $request = $this->apiRegionGetByNameLineNameGetRequest($line_name, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -437,7 +437,7 @@ class BlockApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\FWGCentralAPI\Model\Block',
+                        '\FWGCentralAPI\Model\Region',
                         $request,
                         $response,
                     );
@@ -459,7 +459,7 @@ class BlockApi
             }
 
             return $this->handleResponseWithDataType(
-                '\FWGCentralAPI\Model\Block',
+                '\FWGCentralAPI\Model\Region',
                 $request,
                 $response,
             );
@@ -468,7 +468,7 @@ class BlockApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\FWGCentralAPI\Model\Block',
+                        '\FWGCentralAPI\Model\Region',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -481,17 +481,17 @@ class BlockApi
     }
 
     /**
-     * Operation apiBlockGetByNameBlockNameGetAsync
+     * Operation apiRegionGetByNameLineNameGetAsync
      *
-     * @param  string $block_name (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiBlockGetByNameBlockNameGet'] to see the possible values for this operation
+     * @param  string $line_name (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiRegionGetByNameLineNameGet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiBlockGetByNameBlockNameGetAsync($block_name, string $contentType = self::contentTypes['apiBlockGetByNameBlockNameGet'][0])
+    public function apiRegionGetByNameLineNameGetAsync($line_name, string $contentType = self::contentTypes['apiRegionGetByNameLineNameGet'][0])
     {
-        return $this->apiBlockGetByNameBlockNameGetAsyncWithHttpInfo($block_name, $contentType)
+        return $this->apiRegionGetByNameLineNameGetAsyncWithHttpInfo($line_name, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -500,18 +500,18 @@ class BlockApi
     }
 
     /**
-     * Operation apiBlockGetByNameBlockNameGetAsyncWithHttpInfo
+     * Operation apiRegionGetByNameLineNameGetAsyncWithHttpInfo
      *
-     * @param  string $block_name (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiBlockGetByNameBlockNameGet'] to see the possible values for this operation
+     * @param  string $line_name (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiRegionGetByNameLineNameGet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiBlockGetByNameBlockNameGetAsyncWithHttpInfo($block_name, string $contentType = self::contentTypes['apiBlockGetByNameBlockNameGet'][0])
+    public function apiRegionGetByNameLineNameGetAsyncWithHttpInfo($line_name, string $contentType = self::contentTypes['apiRegionGetByNameLineNameGet'][0])
     {
-        $returnType = '\FWGCentralAPI\Model\Block';
-        $request = $this->apiBlockGetByNameBlockNameGetRequest($block_name, $contentType);
+        $returnType = '\FWGCentralAPI\Model\Region';
+        $request = $this->apiRegionGetByNameLineNameGetRequest($line_name, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -550,26 +550,26 @@ class BlockApi
     }
 
     /**
-     * Create request for operation 'apiBlockGetByNameBlockNameGet'
+     * Create request for operation 'apiRegionGetByNameLineNameGet'
      *
-     * @param  string $block_name (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiBlockGetByNameBlockNameGet'] to see the possible values for this operation
+     * @param  string $line_name (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiRegionGetByNameLineNameGet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function apiBlockGetByNameBlockNameGetRequest($block_name, string $contentType = self::contentTypes['apiBlockGetByNameBlockNameGet'][0])
+    public function apiRegionGetByNameLineNameGetRequest($line_name, string $contentType = self::contentTypes['apiRegionGetByNameLineNameGet'][0])
     {
 
-        // verify the required parameter 'block_name' is set
-        if ($block_name === null || (is_array($block_name) && count($block_name) === 0)) {
+        // verify the required parameter 'line_name' is set
+        if ($line_name === null || (is_array($line_name) && count($line_name) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $block_name when calling apiBlockGetByNameBlockNameGet'
+                'Missing the required parameter $line_name when calling apiRegionGetByNameLineNameGet'
             );
         }
 
 
-        $resourcePath = '/api/Block/GetByName/{BlockName}';
+        $resourcePath = '/api/Region/GetByName/{LineName}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -579,10 +579,10 @@ class BlockApi
 
 
         // path params
-        if ($block_name !== null) {
+        if ($line_name !== null) {
             $resourcePath = str_replace(
-                '{' . 'BlockName' . '}',
-                ObjectSerializer::toPathValue($block_name),
+                '{' . 'LineName' . '}',
+                ObjectSerializer::toPathValue($line_name),
                 $resourcePath
             );
         }
@@ -642,34 +642,34 @@ class BlockApi
     }
 
     /**
-     * Operation apiBlockIdGet
+     * Operation apiRegionIdGet
      *
      * @param  int $id id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiBlockIdGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiRegionIdGet'] to see the possible values for this operation
      *
      * @throws \FWGCentralAPI\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \FWGCentralAPI\Model\Block
+     * @return \FWGCentralAPI\Model\Region
      */
-    public function apiBlockIdGet($id, string $contentType = self::contentTypes['apiBlockIdGet'][0])
+    public function apiRegionIdGet($id, string $contentType = self::contentTypes['apiRegionIdGet'][0])
     {
-        list($response) = $this->apiBlockIdGetWithHttpInfo($id, $contentType);
+        list($response) = $this->apiRegionIdGetWithHttpInfo($id, $contentType);
         return $response;
     }
 
     /**
-     * Operation apiBlockIdGetWithHttpInfo
+     * Operation apiRegionIdGetWithHttpInfo
      *
      * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiBlockIdGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiRegionIdGet'] to see the possible values for this operation
      *
      * @throws \FWGCentralAPI\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \FWGCentralAPI\Model\Block, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FWGCentralAPI\Model\Region, HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiBlockIdGetWithHttpInfo($id, string $contentType = self::contentTypes['apiBlockIdGet'][0])
+    public function apiRegionIdGetWithHttpInfo($id, string $contentType = self::contentTypes['apiRegionIdGet'][0])
     {
-        $request = $this->apiBlockIdGetRequest($id, $contentType);
+        $request = $this->apiRegionIdGetRequest($id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -697,7 +697,7 @@ class BlockApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\FWGCentralAPI\Model\Block',
+                        '\FWGCentralAPI\Model\Region',
                         $request,
                         $response,
                     );
@@ -719,7 +719,7 @@ class BlockApi
             }
 
             return $this->handleResponseWithDataType(
-                '\FWGCentralAPI\Model\Block',
+                '\FWGCentralAPI\Model\Region',
                 $request,
                 $response,
             );
@@ -728,7 +728,7 @@ class BlockApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\FWGCentralAPI\Model\Block',
+                        '\FWGCentralAPI\Model\Region',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -741,17 +741,17 @@ class BlockApi
     }
 
     /**
-     * Operation apiBlockIdGetAsync
+     * Operation apiRegionIdGetAsync
      *
      * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiBlockIdGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiRegionIdGet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiBlockIdGetAsync($id, string $contentType = self::contentTypes['apiBlockIdGet'][0])
+    public function apiRegionIdGetAsync($id, string $contentType = self::contentTypes['apiRegionIdGet'][0])
     {
-        return $this->apiBlockIdGetAsyncWithHttpInfo($id, $contentType)
+        return $this->apiRegionIdGetAsyncWithHttpInfo($id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -760,18 +760,18 @@ class BlockApi
     }
 
     /**
-     * Operation apiBlockIdGetAsyncWithHttpInfo
+     * Operation apiRegionIdGetAsyncWithHttpInfo
      *
      * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiBlockIdGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiRegionIdGet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiBlockIdGetAsyncWithHttpInfo($id, string $contentType = self::contentTypes['apiBlockIdGet'][0])
+    public function apiRegionIdGetAsyncWithHttpInfo($id, string $contentType = self::contentTypes['apiRegionIdGet'][0])
     {
-        $returnType = '\FWGCentralAPI\Model\Block';
-        $request = $this->apiBlockIdGetRequest($id, $contentType);
+        $returnType = '\FWGCentralAPI\Model\Region';
+        $request = $this->apiRegionIdGetRequest($id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -810,26 +810,26 @@ class BlockApi
     }
 
     /**
-     * Create request for operation 'apiBlockIdGet'
+     * Create request for operation 'apiRegionIdGet'
      *
      * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiBlockIdGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiRegionIdGet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function apiBlockIdGetRequest($id, string $contentType = self::contentTypes['apiBlockIdGet'][0])
+    public function apiRegionIdGetRequest($id, string $contentType = self::contentTypes['apiRegionIdGet'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiBlockIdGet'
+                'Missing the required parameter $id when calling apiRegionIdGet'
             );
         }
 
 
-        $resourcePath = '/api/Block/{id}';
+        $resourcePath = '/api/Region/{id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -902,36 +902,36 @@ class BlockApi
     }
 
     /**
-     * Operation apiBlockIdPatch
+     * Operation apiRegionIdPatch
      *
      * @param  int $id id (required)
-     * @param  \FWGCentralAPI\Model\Block|null $block block (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiBlockIdPatch'] to see the possible values for this operation
+     * @param  \FWGCentralAPI\Model\Region|null $region region (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiRegionIdPatch'] to see the possible values for this operation
      *
      * @throws \FWGCentralAPI\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \FWGCentralAPI\Model\BlockItemResponseModel
+     * @return \FWGCentralAPI\Model\RegionItemResponseModel
      */
-    public function apiBlockIdPatch($id, $block = null, string $contentType = self::contentTypes['apiBlockIdPatch'][0])
+    public function apiRegionIdPatch($id, $region = null, string $contentType = self::contentTypes['apiRegionIdPatch'][0])
     {
-        list($response) = $this->apiBlockIdPatchWithHttpInfo($id, $block, $contentType);
+        list($response) = $this->apiRegionIdPatchWithHttpInfo($id, $region, $contentType);
         return $response;
     }
 
     /**
-     * Operation apiBlockIdPatchWithHttpInfo
+     * Operation apiRegionIdPatchWithHttpInfo
      *
      * @param  int $id (required)
-     * @param  \FWGCentralAPI\Model\Block|null $block (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiBlockIdPatch'] to see the possible values for this operation
+     * @param  \FWGCentralAPI\Model\Region|null $region (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiRegionIdPatch'] to see the possible values for this operation
      *
      * @throws \FWGCentralAPI\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \FWGCentralAPI\Model\BlockItemResponseModel, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FWGCentralAPI\Model\RegionItemResponseModel, HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiBlockIdPatchWithHttpInfo($id, $block = null, string $contentType = self::contentTypes['apiBlockIdPatch'][0])
+    public function apiRegionIdPatchWithHttpInfo($id, $region = null, string $contentType = self::contentTypes['apiRegionIdPatch'][0])
     {
-        $request = $this->apiBlockIdPatchRequest($id, $block, $contentType);
+        $request = $this->apiRegionIdPatchRequest($id, $region, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -959,7 +959,7 @@ class BlockApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\FWGCentralAPI\Model\BlockItemResponseModel',
+                        '\FWGCentralAPI\Model\RegionItemResponseModel',
                         $request,
                         $response,
                     );
@@ -981,7 +981,7 @@ class BlockApi
             }
 
             return $this->handleResponseWithDataType(
-                '\FWGCentralAPI\Model\BlockItemResponseModel',
+                '\FWGCentralAPI\Model\RegionItemResponseModel',
                 $request,
                 $response,
             );
@@ -990,7 +990,7 @@ class BlockApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\FWGCentralAPI\Model\BlockItemResponseModel',
+                        '\FWGCentralAPI\Model\RegionItemResponseModel',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1003,18 +1003,18 @@ class BlockApi
     }
 
     /**
-     * Operation apiBlockIdPatchAsync
+     * Operation apiRegionIdPatchAsync
      *
      * @param  int $id (required)
-     * @param  \FWGCentralAPI\Model\Block|null $block (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiBlockIdPatch'] to see the possible values for this operation
+     * @param  \FWGCentralAPI\Model\Region|null $region (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiRegionIdPatch'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiBlockIdPatchAsync($id, $block = null, string $contentType = self::contentTypes['apiBlockIdPatch'][0])
+    public function apiRegionIdPatchAsync($id, $region = null, string $contentType = self::contentTypes['apiRegionIdPatch'][0])
     {
-        return $this->apiBlockIdPatchAsyncWithHttpInfo($id, $block, $contentType)
+        return $this->apiRegionIdPatchAsyncWithHttpInfo($id, $region, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1023,19 +1023,19 @@ class BlockApi
     }
 
     /**
-     * Operation apiBlockIdPatchAsyncWithHttpInfo
+     * Operation apiRegionIdPatchAsyncWithHttpInfo
      *
      * @param  int $id (required)
-     * @param  \FWGCentralAPI\Model\Block|null $block (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiBlockIdPatch'] to see the possible values for this operation
+     * @param  \FWGCentralAPI\Model\Region|null $region (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiRegionIdPatch'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiBlockIdPatchAsyncWithHttpInfo($id, $block = null, string $contentType = self::contentTypes['apiBlockIdPatch'][0])
+    public function apiRegionIdPatchAsyncWithHttpInfo($id, $region = null, string $contentType = self::contentTypes['apiRegionIdPatch'][0])
     {
-        $returnType = '\FWGCentralAPI\Model\BlockItemResponseModel';
-        $request = $this->apiBlockIdPatchRequest($id, $block, $contentType);
+        $returnType = '\FWGCentralAPI\Model\RegionItemResponseModel';
+        $request = $this->apiRegionIdPatchRequest($id, $region, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1074,28 +1074,28 @@ class BlockApi
     }
 
     /**
-     * Create request for operation 'apiBlockIdPatch'
+     * Create request for operation 'apiRegionIdPatch'
      *
      * @param  int $id (required)
-     * @param  \FWGCentralAPI\Model\Block|null $block (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiBlockIdPatch'] to see the possible values for this operation
+     * @param  \FWGCentralAPI\Model\Region|null $region (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiRegionIdPatch'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function apiBlockIdPatchRequest($id, $block = null, string $contentType = self::contentTypes['apiBlockIdPatch'][0])
+    public function apiRegionIdPatchRequest($id, $region = null, string $contentType = self::contentTypes['apiRegionIdPatch'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiBlockIdPatch'
+                'Missing the required parameter $id when calling apiRegionIdPatch'
             );
         }
 
 
 
-        $resourcePath = '/api/Block/{id}';
+        $resourcePath = '/api/Region/{id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1121,12 +1121,12 @@ class BlockApi
         );
 
         // for model (json/xml)
-        if (isset($block)) {
+        if (isset($region)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($block));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($region));
             } else {
-                $httpBody = $block;
+                $httpBody = $region;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -1175,34 +1175,34 @@ class BlockApi
     }
 
     /**
-     * Operation apiBlockPost
+     * Operation apiRegionPost
      *
-     * @param  \FWGCentralAPI\Model\Block|null $block block (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiBlockPost'] to see the possible values for this operation
+     * @param  \FWGCentralAPI\Model\Region|null $region region (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiRegionPost'] to see the possible values for this operation
      *
      * @throws \FWGCentralAPI\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \FWGCentralAPI\Model\BlockItemResponseModel
+     * @return \FWGCentralAPI\Model\RegionItemResponseModel
      */
-    public function apiBlockPost($block = null, string $contentType = self::contentTypes['apiBlockPost'][0])
+    public function apiRegionPost($region = null, string $contentType = self::contentTypes['apiRegionPost'][0])
     {
-        list($response) = $this->apiBlockPostWithHttpInfo($block, $contentType);
+        list($response) = $this->apiRegionPostWithHttpInfo($region, $contentType);
         return $response;
     }
 
     /**
-     * Operation apiBlockPostWithHttpInfo
+     * Operation apiRegionPostWithHttpInfo
      *
-     * @param  \FWGCentralAPI\Model\Block|null $block (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiBlockPost'] to see the possible values for this operation
+     * @param  \FWGCentralAPI\Model\Region|null $region (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiRegionPost'] to see the possible values for this operation
      *
      * @throws \FWGCentralAPI\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \FWGCentralAPI\Model\BlockItemResponseModel, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FWGCentralAPI\Model\RegionItemResponseModel, HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiBlockPostWithHttpInfo($block = null, string $contentType = self::contentTypes['apiBlockPost'][0])
+    public function apiRegionPostWithHttpInfo($region = null, string $contentType = self::contentTypes['apiRegionPost'][0])
     {
-        $request = $this->apiBlockPostRequest($block, $contentType);
+        $request = $this->apiRegionPostRequest($region, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1230,7 +1230,7 @@ class BlockApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\FWGCentralAPI\Model\BlockItemResponseModel',
+                        '\FWGCentralAPI\Model\RegionItemResponseModel',
                         $request,
                         $response,
                     );
@@ -1252,7 +1252,7 @@ class BlockApi
             }
 
             return $this->handleResponseWithDataType(
-                '\FWGCentralAPI\Model\BlockItemResponseModel',
+                '\FWGCentralAPI\Model\RegionItemResponseModel',
                 $request,
                 $response,
             );
@@ -1261,7 +1261,7 @@ class BlockApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\FWGCentralAPI\Model\BlockItemResponseModel',
+                        '\FWGCentralAPI\Model\RegionItemResponseModel',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1274,17 +1274,17 @@ class BlockApi
     }
 
     /**
-     * Operation apiBlockPostAsync
+     * Operation apiRegionPostAsync
      *
-     * @param  \FWGCentralAPI\Model\Block|null $block (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiBlockPost'] to see the possible values for this operation
+     * @param  \FWGCentralAPI\Model\Region|null $region (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiRegionPost'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiBlockPostAsync($block = null, string $contentType = self::contentTypes['apiBlockPost'][0])
+    public function apiRegionPostAsync($region = null, string $contentType = self::contentTypes['apiRegionPost'][0])
     {
-        return $this->apiBlockPostAsyncWithHttpInfo($block, $contentType)
+        return $this->apiRegionPostAsyncWithHttpInfo($region, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1293,18 +1293,18 @@ class BlockApi
     }
 
     /**
-     * Operation apiBlockPostAsyncWithHttpInfo
+     * Operation apiRegionPostAsyncWithHttpInfo
      *
-     * @param  \FWGCentralAPI\Model\Block|null $block (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiBlockPost'] to see the possible values for this operation
+     * @param  \FWGCentralAPI\Model\Region|null $region (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiRegionPost'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiBlockPostAsyncWithHttpInfo($block = null, string $contentType = self::contentTypes['apiBlockPost'][0])
+    public function apiRegionPostAsyncWithHttpInfo($region = null, string $contentType = self::contentTypes['apiRegionPost'][0])
     {
-        $returnType = '\FWGCentralAPI\Model\BlockItemResponseModel';
-        $request = $this->apiBlockPostRequest($block, $contentType);
+        $returnType = '\FWGCentralAPI\Model\RegionItemResponseModel';
+        $request = $this->apiRegionPostRequest($region, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1343,20 +1343,20 @@ class BlockApi
     }
 
     /**
-     * Create request for operation 'apiBlockPost'
+     * Create request for operation 'apiRegionPost'
      *
-     * @param  \FWGCentralAPI\Model\Block|null $block (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiBlockPost'] to see the possible values for this operation
+     * @param  \FWGCentralAPI\Model\Region|null $region (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiRegionPost'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function apiBlockPostRequest($block = null, string $contentType = self::contentTypes['apiBlockPost'][0])
+    public function apiRegionPostRequest($region = null, string $contentType = self::contentTypes['apiRegionPost'][0])
     {
 
 
 
-        $resourcePath = '/api/Block';
+        $resourcePath = '/api/Region';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1374,12 +1374,12 @@ class BlockApi
         );
 
         // for model (json/xml)
-        if (isset($block)) {
+        if (isset($region)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($block));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($region));
             } else {
-                $httpBody = $block;
+                $httpBody = $region;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {

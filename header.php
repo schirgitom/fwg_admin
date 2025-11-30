@@ -84,30 +84,23 @@
     <link rel="stylesheet" href="/node_modules/datatables.net-bs5/css/dataTables.bootstrap5.min.css">
 </head>
 <body>
-<main>
-    <h1 class="visually-hidden">FWG Admin Portal</h1>
-    <div class="container">
-        <header
-            class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom"
-        >
-            <a
-                href="/"
-                class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none"
-            >
-                <svg class="bi me-2" width="40" height="32" aria-hidden="true">
-                    <use xlink:href="#bootstrap"></use>
-                </svg>
-                <span class="fs-4">FWG Admin Portal</span>
-            </a>
-            <!--<ul class="nav nav-pills">
-                <li class="nav-item">
-                    <a href="#" class="nav-link active" aria-current="page">Home</a>
-                </li>
-                <li class="nav-item"><a href="#" class="nav-link">Features</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Pricing</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">About</a></li>
-            </ul>-->
-        </header>
-    </div>
-</main>
+<div class="page-container d-flex flex-column min-vh-100">
+
+    <!-- ===== Header ===== -->
+    <header class="border-bottom">
+        <div class="container">
+            <div class="d-flex flex-wrap justify-content-center py-3 mb-4">
+
+                <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-decoration-none">
+                    <svg class="bi me-2" width="40" height="32" aria-hidden="true">
+                        <use xlink:href="#bootstrap"></use>
+                    </svg>
+                    <span class="fs-4">FWG Admin Portal</span>
+                </a>
+
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== Hauptinhalt BEGINNT HIER ===== -->
+    <main class="flex-grow-1">

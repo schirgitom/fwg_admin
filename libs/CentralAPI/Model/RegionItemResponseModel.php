@@ -1,6 +1,6 @@
 <?php
 /**
- * Block
+ * RegionItemResponseModel
  *
  * PHP version 8.1
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \FWGCentralAPI\ObjectSerializer;
 
 /**
- * Block Class Doc Comment
+ * RegionItemResponseModel Class Doc Comment
  *
  * @category Class
  * @package  FWGCentralAPI
@@ -40,7 +40,7 @@ use \FWGCentralAPI\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class Block implements ModelInterface, ArrayAccess, \JsonSerializable
+class RegionItemResponseModel implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class Block implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Block';
+    protected static $openAPIModelName = 'RegionItemResponseModel';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,12 +57,11 @@ class Block implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'f_k_line' => 'int',
-        'name' => 'string',
-        'db_prefix' => 'string',
-        'longitude' => 'int',
-        'latitude' => 'int',
-        'id' => 'int'
+        'data' => '\FWGCentralAPI\Model\Region',
+        'has_error' => 'bool',
+        'error_messages' => 'array<string,string>',
+        'warning_messages' => 'array<string,string>',
+        'has_warning' => 'bool'
     ];
 
     /**
@@ -73,12 +72,11 @@ class Block implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'f_k_line' => 'int32',
-        'name' => null,
-        'db_prefix' => null,
-        'longitude' => 'int32',
-        'latitude' => 'int32',
-        'id' => 'int32'
+        'data' => null,
+        'has_error' => null,
+        'error_messages' => null,
+        'warning_messages' => null,
+        'has_warning' => null
     ];
 
     /**
@@ -87,12 +85,11 @@ class Block implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'f_k_line' => false,
-        'name' => false,
-        'db_prefix' => false,
-        'longitude' => true,
-        'latitude' => true,
-        'id' => false
+        'data' => false,
+        'has_error' => false,
+        'error_messages' => true,
+        'warning_messages' => true,
+        'has_warning' => false
     ];
 
     /**
@@ -181,12 +178,11 @@ class Block implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'f_k_line' => 'fK_Line',
-        'name' => 'name',
-        'db_prefix' => 'dbPrefix',
-        'longitude' => 'longitude',
-        'latitude' => 'latitude',
-        'id' => 'id'
+        'data' => 'data',
+        'has_error' => 'hasError',
+        'error_messages' => 'errorMessages',
+        'warning_messages' => 'warningMessages',
+        'has_warning' => 'hasWarning'
     ];
 
     /**
@@ -195,12 +191,11 @@ class Block implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'f_k_line' => 'setFKLine',
-        'name' => 'setName',
-        'db_prefix' => 'setDbPrefix',
-        'longitude' => 'setLongitude',
-        'latitude' => 'setLatitude',
-        'id' => 'setId'
+        'data' => 'setData',
+        'has_error' => 'setHasError',
+        'error_messages' => 'setErrorMessages',
+        'warning_messages' => 'setWarningMessages',
+        'has_warning' => 'setHasWarning'
     ];
 
     /**
@@ -209,12 +204,11 @@ class Block implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'f_k_line' => 'getFKLine',
-        'name' => 'getName',
-        'db_prefix' => 'getDbPrefix',
-        'longitude' => 'getLongitude',
-        'latitude' => 'getLatitude',
-        'id' => 'getId'
+        'data' => 'getData',
+        'has_error' => 'getHasError',
+        'error_messages' => 'getErrorMessages',
+        'warning_messages' => 'getWarningMessages',
+        'has_warning' => 'getHasWarning'
     ];
 
     /**
@@ -274,12 +268,11 @@ class Block implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('f_k_line', $data ?? [], null);
-        $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('db_prefix', $data ?? [], null);
-        $this->setIfExists('longitude', $data ?? [], null);
-        $this->setIfExists('latitude', $data ?? [], null);
-        $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('data', $data ?? [], null);
+        $this->setIfExists('has_error', $data ?? [], null);
+        $this->setIfExists('error_messages', $data ?? [], null);
+        $this->setIfExists('warning_messages', $data ?? [], null);
+        $this->setIfExists('has_warning', $data ?? [], null);
     }
 
     /**
@@ -309,23 +302,6 @@ class Block implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['f_k_line'] === null) {
-            $invalidProperties[] = "'f_k_line' can't be null";
-        }
-        if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
-        }
-        if ((mb_strlen($this->container['name']) < 1)) {
-            $invalidProperties[] = "invalid value for 'name', the character length must be bigger than or equal to 1.";
-        }
-
-        if ($this->container['db_prefix'] === null) {
-            $invalidProperties[] = "'db_prefix' can't be null";
-        }
-        if ((mb_strlen($this->container['db_prefix']) < 1)) {
-            $invalidProperties[] = "invalid value for 'db_prefix', the character length must be bigger than or equal to 1.";
-        }
-
         return $invalidProperties;
     }
 
@@ -342,187 +318,150 @@ class Block implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets f_k_line
+     * Gets data
      *
-     * @return int
+     * @return \FWGCentralAPI\Model\Region|null
      */
-    public function getFKLine()
+    public function getData()
     {
-        return $this->container['f_k_line'];
+        return $this->container['data'];
     }
 
     /**
-     * Sets f_k_line
+     * Sets data
      *
-     * @param int $f_k_line f_k_line
+     * @param \FWGCentralAPI\Model\Region|null $data data
      *
      * @return self
      */
-    public function setFKLine($f_k_line)
+    public function setData($data)
     {
-        if (is_null($f_k_line)) {
-            throw new \InvalidArgumentException('non-nullable f_k_line cannot be null');
+        if (is_null($data)) {
+            throw new \InvalidArgumentException('non-nullable data cannot be null');
         }
-        $this->container['f_k_line'] = $f_k_line;
+        $this->container['data'] = $data;
 
         return $this;
     }
 
     /**
-     * Gets name
+     * Gets has_error
      *
-     * @return string
+     * @return bool|null
      */
-    public function getName()
+    public function getHasError()
     {
-        return $this->container['name'];
+        return $this->container['has_error'];
     }
 
     /**
-     * Sets name
+     * Sets has_error
      *
-     * @param string $name name
+     * @param bool|null $has_error has_error
      *
      * @return self
      */
-    public function setName($name)
+    public function setHasError($has_error)
     {
-        if (is_null($name)) {
-            throw new \InvalidArgumentException('non-nullable name cannot be null');
+        if (is_null($has_error)) {
+            throw new \InvalidArgumentException('non-nullable has_error cannot be null');
         }
-
-        if ((mb_strlen($name) < 1)) {
-            throw new \InvalidArgumentException('invalid length for $name when calling Block., must be bigger than or equal to 1.');
-        }
-
-        $this->container['name'] = $name;
+        $this->container['has_error'] = $has_error;
 
         return $this;
     }
 
     /**
-     * Gets db_prefix
+     * Gets error_messages
      *
-     * @return string
+     * @return array<string,string>|null
      */
-    public function getDbPrefix()
+    public function getErrorMessages()
     {
-        return $this->container['db_prefix'];
+        return $this->container['error_messages'];
     }
 
     /**
-     * Sets db_prefix
+     * Sets error_messages
      *
-     * @param string $db_prefix db_prefix
+     * @param array<string,string>|null $error_messages error_messages
      *
      * @return self
      */
-    public function setDbPrefix($db_prefix)
+    public function setErrorMessages($error_messages)
     {
-        if (is_null($db_prefix)) {
-            throw new \InvalidArgumentException('non-nullable db_prefix cannot be null');
-        }
-
-        if ((mb_strlen($db_prefix) < 1)) {
-            throw new \InvalidArgumentException('invalid length for $db_prefix when calling Block., must be bigger than or equal to 1.');
-        }
-
-        $this->container['db_prefix'] = $db_prefix;
-
-        return $this;
-    }
-
-    /**
-     * Gets longitude
-     *
-     * @return int|null
-     */
-    public function getLongitude()
-    {
-        return $this->container['longitude'];
-    }
-
-    /**
-     * Sets longitude
-     *
-     * @param int|null $longitude longitude
-     *
-     * @return self
-     */
-    public function setLongitude($longitude)
-    {
-        if (is_null($longitude)) {
-            array_push($this->openAPINullablesSetToNull, 'longitude');
+        if (is_null($error_messages)) {
+            array_push($this->openAPINullablesSetToNull, 'error_messages');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('longitude', $nullablesSetToNull);
+            $index = array_search('error_messages', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['longitude'] = $longitude;
+        $this->container['error_messages'] = $error_messages;
 
         return $this;
     }
 
     /**
-     * Gets latitude
+     * Gets warning_messages
      *
-     * @return int|null
+     * @return array<string,string>|null
      */
-    public function getLatitude()
+    public function getWarningMessages()
     {
-        return $this->container['latitude'];
+        return $this->container['warning_messages'];
     }
 
     /**
-     * Sets latitude
+     * Sets warning_messages
      *
-     * @param int|null $latitude latitude
+     * @param array<string,string>|null $warning_messages warning_messages
      *
      * @return self
      */
-    public function setLatitude($latitude)
+    public function setWarningMessages($warning_messages)
     {
-        if (is_null($latitude)) {
-            array_push($this->openAPINullablesSetToNull, 'latitude');
+        if (is_null($warning_messages)) {
+            array_push($this->openAPINullablesSetToNull, 'warning_messages');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('latitude', $nullablesSetToNull);
+            $index = array_search('warning_messages', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['latitude'] = $latitude;
+        $this->container['warning_messages'] = $warning_messages;
 
         return $this;
     }
 
     /**
-     * Gets id
+     * Gets has_warning
      *
-     * @return int|null
+     * @return bool|null
      */
-    public function getId()
+    public function getHasWarning()
     {
-        return $this->container['id'];
+        return $this->container['has_warning'];
     }
 
     /**
-     * Sets id
+     * Sets has_warning
      *
-     * @param int|null $id id
+     * @param bool|null $has_warning has_warning
      *
      * @return self
      */
-    public function setId($id)
+    public function setHasWarning($has_warning)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
+        if (is_null($has_warning)) {
+            throw new \InvalidArgumentException('non-nullable has_warning cannot be null');
         }
-        $this->container['id'] = $id;
+        $this->container['has_warning'] = $has_warning;
 
         return $this;
     }
