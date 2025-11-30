@@ -1,6 +1,6 @@
 <?php
 /**
- * HeatDevice
+ * DatabaseChange
  *
  * PHP version 8.1
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \FWGCentralAPI\ObjectSerializer;
 
 /**
- * HeatDevice Class Doc Comment
+ * DatabaseChange Class Doc Comment
  *
  * @category Class
  * @package  FWGCentralAPI
@@ -40,7 +40,7 @@ use \FWGCentralAPI\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class HeatDevice implements ModelInterface, ArrayAccess, \JsonSerializable
+class DatabaseChange implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class HeatDevice implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'HeatDevice';
+    protected static $openAPIModelName = 'DatabaseChange';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,15 +57,17 @@ class HeatDevice implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'device_id' => 'string',
-        'topic' => 'string',
-        'device_vendor' => 'string',
-        'f_k_region' => 'int',
-        'f_k_customer' => 'int',
-        'active' => 'bool',
-        'device_name' => 'string',
-        'device_type' => 'string',
-        'database_name' => 'string',
+        'f_k_heat_device' => 'int',
+        'heat_device' => '\FWGCentralAPI\Model\HeatDevice',
+        'f_k_old_region' => 'int',
+        'old_region' => '\FWGCentralAPI\Model\Region',
+        'f_k_new_region' => 'int',
+        'new_region' => '\FWGCentralAPI\Model\Region',
+        'old_database_name' => 'string',
+        'new_database_name' => 'string',
+        'migration_start' => '\DateTime',
+        'migration_end' => '\DateTime',
+        'rows_affected' => 'int',
         'id' => 'int'
     ];
 
@@ -77,15 +79,17 @@ class HeatDevice implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'device_id' => null,
-        'topic' => null,
-        'device_vendor' => null,
-        'f_k_region' => 'int32',
-        'f_k_customer' => 'int32',
-        'active' => null,
-        'device_name' => null,
-        'device_type' => null,
-        'database_name' => null,
+        'f_k_heat_device' => 'int32',
+        'heat_device' => null,
+        'f_k_old_region' => 'int32',
+        'old_region' => null,
+        'f_k_new_region' => 'int32',
+        'new_region' => null,
+        'old_database_name' => null,
+        'new_database_name' => null,
+        'migration_start' => 'date-time',
+        'migration_end' => 'date-time',
+        'rows_affected' => 'int32',
         'id' => 'int32'
     ];
 
@@ -95,15 +99,17 @@ class HeatDevice implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'device_id' => false,
-        'topic' => false,
-        'device_vendor' => false,
-        'f_k_region' => false,
-        'f_k_customer' => false,
-        'active' => false,
-        'device_name' => false,
-        'device_type' => true,
-        'database_name' => true,
+        'f_k_heat_device' => false,
+        'heat_device' => false,
+        'f_k_old_region' => false,
+        'old_region' => false,
+        'f_k_new_region' => false,
+        'new_region' => false,
+        'old_database_name' => true,
+        'new_database_name' => true,
+        'migration_start' => false,
+        'migration_end' => true,
+        'rows_affected' => true,
         'id' => false
     ];
 
@@ -193,15 +199,17 @@ class HeatDevice implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'device_id' => 'deviceID',
-        'topic' => 'topic',
-        'device_vendor' => 'deviceVendor',
-        'f_k_region' => 'fK_Region',
-        'f_k_customer' => 'fK_Customer',
-        'active' => 'active',
-        'device_name' => 'deviceName',
-        'device_type' => 'deviceType',
-        'database_name' => 'databaseName',
+        'f_k_heat_device' => 'fK_HeatDevice',
+        'heat_device' => 'heatDevice',
+        'f_k_old_region' => 'fK_OldRegion',
+        'old_region' => 'oldRegion',
+        'f_k_new_region' => 'fK_NewRegion',
+        'new_region' => 'newRegion',
+        'old_database_name' => 'oldDatabaseName',
+        'new_database_name' => 'newDatabaseName',
+        'migration_start' => 'migrationStart',
+        'migration_end' => 'migrationEnd',
+        'rows_affected' => 'rowsAffected',
         'id' => 'id'
     ];
 
@@ -211,15 +219,17 @@ class HeatDevice implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'device_id' => 'setDeviceId',
-        'topic' => 'setTopic',
-        'device_vendor' => 'setDeviceVendor',
-        'f_k_region' => 'setFKRegion',
-        'f_k_customer' => 'setFKCustomer',
-        'active' => 'setActive',
-        'device_name' => 'setDeviceName',
-        'device_type' => 'setDeviceType',
-        'database_name' => 'setDatabaseName',
+        'f_k_heat_device' => 'setFKHeatDevice',
+        'heat_device' => 'setHeatDevice',
+        'f_k_old_region' => 'setFKOldRegion',
+        'old_region' => 'setOldRegion',
+        'f_k_new_region' => 'setFKNewRegion',
+        'new_region' => 'setNewRegion',
+        'old_database_name' => 'setOldDatabaseName',
+        'new_database_name' => 'setNewDatabaseName',
+        'migration_start' => 'setMigrationStart',
+        'migration_end' => 'setMigrationEnd',
+        'rows_affected' => 'setRowsAffected',
         'id' => 'setId'
     ];
 
@@ -229,15 +239,17 @@ class HeatDevice implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'device_id' => 'getDeviceId',
-        'topic' => 'getTopic',
-        'device_vendor' => 'getDeviceVendor',
-        'f_k_region' => 'getFKRegion',
-        'f_k_customer' => 'getFKCustomer',
-        'active' => 'getActive',
-        'device_name' => 'getDeviceName',
-        'device_type' => 'getDeviceType',
-        'database_name' => 'getDatabaseName',
+        'f_k_heat_device' => 'getFKHeatDevice',
+        'heat_device' => 'getHeatDevice',
+        'f_k_old_region' => 'getFKOldRegion',
+        'old_region' => 'getOldRegion',
+        'f_k_new_region' => 'getFKNewRegion',
+        'new_region' => 'getNewRegion',
+        'old_database_name' => 'getOldDatabaseName',
+        'new_database_name' => 'getNewDatabaseName',
+        'migration_start' => 'getMigrationStart',
+        'migration_end' => 'getMigrationEnd',
+        'rows_affected' => 'getRowsAffected',
         'id' => 'getId'
     ];
 
@@ -298,15 +310,17 @@ class HeatDevice implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('device_id', $data ?? [], null);
-        $this->setIfExists('topic', $data ?? [], null);
-        $this->setIfExists('device_vendor', $data ?? [], null);
-        $this->setIfExists('f_k_region', $data ?? [], null);
-        $this->setIfExists('f_k_customer', $data ?? [], null);
-        $this->setIfExists('active', $data ?? [], null);
-        $this->setIfExists('device_name', $data ?? [], null);
-        $this->setIfExists('device_type', $data ?? [], null);
-        $this->setIfExists('database_name', $data ?? [], null);
+        $this->setIfExists('f_k_heat_device', $data ?? [], null);
+        $this->setIfExists('heat_device', $data ?? [], null);
+        $this->setIfExists('f_k_old_region', $data ?? [], null);
+        $this->setIfExists('old_region', $data ?? [], null);
+        $this->setIfExists('f_k_new_region', $data ?? [], null);
+        $this->setIfExists('new_region', $data ?? [], null);
+        $this->setIfExists('old_database_name', $data ?? [], null);
+        $this->setIfExists('new_database_name', $data ?? [], null);
+        $this->setIfExists('migration_start', $data ?? [], null);
+        $this->setIfExists('migration_end', $data ?? [], null);
+        $this->setIfExists('rows_affected', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
     }
 
@@ -337,43 +351,15 @@ class HeatDevice implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['device_id'] === null) {
-            $invalidProperties[] = "'device_id' can't be null";
+        if ($this->container['f_k_heat_device'] === null) {
+            $invalidProperties[] = "'f_k_heat_device' can't be null";
         }
-        if ((mb_strlen($this->container['device_id']) < 1)) {
-            $invalidProperties[] = "invalid value for 'device_id', the character length must be bigger than or equal to 1.";
+        if ($this->container['f_k_old_region'] === null) {
+            $invalidProperties[] = "'f_k_old_region' can't be null";
         }
-
-        if ($this->container['topic'] === null) {
-            $invalidProperties[] = "'topic' can't be null";
+        if ($this->container['f_k_new_region'] === null) {
+            $invalidProperties[] = "'f_k_new_region' can't be null";
         }
-        if ((mb_strlen($this->container['topic']) < 1)) {
-            $invalidProperties[] = "invalid value for 'topic', the character length must be bigger than or equal to 1.";
-        }
-
-        if ($this->container['device_vendor'] === null) {
-            $invalidProperties[] = "'device_vendor' can't be null";
-        }
-        if ((mb_strlen($this->container['device_vendor']) < 1)) {
-            $invalidProperties[] = "invalid value for 'device_vendor', the character length must be bigger than or equal to 1.";
-        }
-
-        if ($this->container['f_k_region'] === null) {
-            $invalidProperties[] = "'f_k_region' can't be null";
-        }
-        if ($this->container['f_k_customer'] === null) {
-            $invalidProperties[] = "'f_k_customer' can't be null";
-        }
-        if ($this->container['active'] === null) {
-            $invalidProperties[] = "'active' can't be null";
-        }
-        if ($this->container['device_name'] === null) {
-            $invalidProperties[] = "'device_name' can't be null";
-        }
-        if ((mb_strlen($this->container['device_name']) < 1)) {
-            $invalidProperties[] = "invalid value for 'device_name', the character length must be bigger than or equal to 1.";
-        }
-
         return $invalidProperties;
     }
 
@@ -390,278 +376,326 @@ class HeatDevice implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets device_id
-     *
-     * @return string
-     */
-    public function getDeviceId()
-    {
-        return $this->container['device_id'];
-    }
-
-    /**
-     * Sets device_id
-     *
-     * @param string $device_id device_id
-     *
-     * @return self
-     */
-    public function setDeviceId($device_id)
-    {
-        if (is_null($device_id)) {
-            throw new \InvalidArgumentException('non-nullable device_id cannot be null');
-        }
-
-        if ((mb_strlen($device_id) < 1)) {
-            throw new \InvalidArgumentException('invalid length for $device_id when calling HeatDevice., must be bigger than or equal to 1.');
-        }
-
-        $this->container['device_id'] = $device_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets topic
-     *
-     * @return string
-     */
-    public function getTopic()
-    {
-        return $this->container['topic'];
-    }
-
-    /**
-     * Sets topic
-     *
-     * @param string $topic topic
-     *
-     * @return self
-     */
-    public function setTopic($topic)
-    {
-        if (is_null($topic)) {
-            throw new \InvalidArgumentException('non-nullable topic cannot be null');
-        }
-
-        if ((mb_strlen($topic) < 1)) {
-            throw new \InvalidArgumentException('invalid length for $topic when calling HeatDevice., must be bigger than or equal to 1.');
-        }
-
-        $this->container['topic'] = $topic;
-
-        return $this;
-    }
-
-    /**
-     * Gets device_vendor
-     *
-     * @return string
-     */
-    public function getDeviceVendor()
-    {
-        return $this->container['device_vendor'];
-    }
-
-    /**
-     * Sets device_vendor
-     *
-     * @param string $device_vendor device_vendor
-     *
-     * @return self
-     */
-    public function setDeviceVendor($device_vendor)
-    {
-        if (is_null($device_vendor)) {
-            throw new \InvalidArgumentException('non-nullable device_vendor cannot be null');
-        }
-
-        if ((mb_strlen($device_vendor) < 1)) {
-            throw new \InvalidArgumentException('invalid length for $device_vendor when calling HeatDevice., must be bigger than or equal to 1.');
-        }
-
-        $this->container['device_vendor'] = $device_vendor;
-
-        return $this;
-    }
-
-    /**
-     * Gets f_k_region
+     * Gets f_k_heat_device
      *
      * @return int
      */
-    public function getFKRegion()
+    public function getFKHeatDevice()
     {
-        return $this->container['f_k_region'];
+        return $this->container['f_k_heat_device'];
     }
 
     /**
-     * Sets f_k_region
+     * Sets f_k_heat_device
      *
-     * @param int $f_k_region f_k_region
+     * @param int $f_k_heat_device f_k_heat_device
      *
      * @return self
      */
-    public function setFKRegion($f_k_region)
+    public function setFKHeatDevice($f_k_heat_device)
     {
-        if (is_null($f_k_region)) {
-            throw new \InvalidArgumentException('non-nullable f_k_region cannot be null');
+        if (is_null($f_k_heat_device)) {
+            throw new \InvalidArgumentException('non-nullable f_k_heat_device cannot be null');
         }
-        $this->container['f_k_region'] = $f_k_region;
+        $this->container['f_k_heat_device'] = $f_k_heat_device;
 
         return $this;
     }
 
     /**
-     * Gets f_k_customer
+     * Gets heat_device
+     *
+     * @return \FWGCentralAPI\Model\HeatDevice|null
+     */
+    public function getHeatDevice()
+    {
+        return $this->container['heat_device'];
+    }
+
+    /**
+     * Sets heat_device
+     *
+     * @param \FWGCentralAPI\Model\HeatDevice|null $heat_device heat_device
+     *
+     * @return self
+     */
+    public function setHeatDevice($heat_device)
+    {
+        if (is_null($heat_device)) {
+            throw new \InvalidArgumentException('non-nullable heat_device cannot be null');
+        }
+        $this->container['heat_device'] = $heat_device;
+
+        return $this;
+    }
+
+    /**
+     * Gets f_k_old_region
      *
      * @return int
      */
-    public function getFKCustomer()
+    public function getFKOldRegion()
     {
-        return $this->container['f_k_customer'];
+        return $this->container['f_k_old_region'];
     }
 
     /**
-     * Sets f_k_customer
+     * Sets f_k_old_region
      *
-     * @param int $f_k_customer f_k_customer
+     * @param int $f_k_old_region f_k_old_region
      *
      * @return self
      */
-    public function setFKCustomer($f_k_customer)
+    public function setFKOldRegion($f_k_old_region)
     {
-        if (is_null($f_k_customer)) {
-            throw new \InvalidArgumentException('non-nullable f_k_customer cannot be null');
+        if (is_null($f_k_old_region)) {
+            throw new \InvalidArgumentException('non-nullable f_k_old_region cannot be null');
         }
-        $this->container['f_k_customer'] = $f_k_customer;
+        $this->container['f_k_old_region'] = $f_k_old_region;
 
         return $this;
     }
 
     /**
-     * Gets active
+     * Gets old_region
      *
-     * @return bool
+     * @return \FWGCentralAPI\Model\Region|null
      */
-    public function getActive()
+    public function getOldRegion()
     {
-        return $this->container['active'];
+        return $this->container['old_region'];
     }
 
     /**
-     * Sets active
+     * Sets old_region
      *
-     * @param bool $active active
+     * @param \FWGCentralAPI\Model\Region|null $old_region old_region
      *
      * @return self
      */
-    public function setActive($active)
+    public function setOldRegion($old_region)
     {
-        if (is_null($active)) {
-            throw new \InvalidArgumentException('non-nullable active cannot be null');
+        if (is_null($old_region)) {
+            throw new \InvalidArgumentException('non-nullable old_region cannot be null');
         }
-        $this->container['active'] = $active;
+        $this->container['old_region'] = $old_region;
 
         return $this;
     }
 
     /**
-     * Gets device_name
+     * Gets f_k_new_region
      *
-     * @return string
+     * @return int
      */
-    public function getDeviceName()
+    public function getFKNewRegion()
     {
-        return $this->container['device_name'];
+        return $this->container['f_k_new_region'];
     }
 
     /**
-     * Sets device_name
+     * Sets f_k_new_region
      *
-     * @param string $device_name device_name
+     * @param int $f_k_new_region f_k_new_region
      *
      * @return self
      */
-    public function setDeviceName($device_name)
+    public function setFKNewRegion($f_k_new_region)
     {
-        if (is_null($device_name)) {
-            throw new \InvalidArgumentException('non-nullable device_name cannot be null');
+        if (is_null($f_k_new_region)) {
+            throw new \InvalidArgumentException('non-nullable f_k_new_region cannot be null');
         }
-
-        if ((mb_strlen($device_name) < 1)) {
-            throw new \InvalidArgumentException('invalid length for $device_name when calling HeatDevice., must be bigger than or equal to 1.');
-        }
-
-        $this->container['device_name'] = $device_name;
+        $this->container['f_k_new_region'] = $f_k_new_region;
 
         return $this;
     }
 
     /**
-     * Gets device_type
+     * Gets new_region
+     *
+     * @return \FWGCentralAPI\Model\Region|null
+     */
+    public function getNewRegion()
+    {
+        return $this->container['new_region'];
+    }
+
+    /**
+     * Sets new_region
+     *
+     * @param \FWGCentralAPI\Model\Region|null $new_region new_region
+     *
+     * @return self
+     */
+    public function setNewRegion($new_region)
+    {
+        if (is_null($new_region)) {
+            throw new \InvalidArgumentException('non-nullable new_region cannot be null');
+        }
+        $this->container['new_region'] = $new_region;
+
+        return $this;
+    }
+
+    /**
+     * Gets old_database_name
      *
      * @return string|null
      */
-    public function getDeviceType()
+    public function getOldDatabaseName()
     {
-        return $this->container['device_type'];
+        return $this->container['old_database_name'];
     }
 
     /**
-     * Sets device_type
+     * Sets old_database_name
      *
-     * @param string|null $device_type device_type
+     * @param string|null $old_database_name old_database_name
      *
      * @return self
      */
-    public function setDeviceType($device_type)
+    public function setOldDatabaseName($old_database_name)
     {
-        if (is_null($device_type)) {
-            array_push($this->openAPINullablesSetToNull, 'device_type');
+        if (is_null($old_database_name)) {
+            array_push($this->openAPINullablesSetToNull, 'old_database_name');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('device_type', $nullablesSetToNull);
+            $index = array_search('old_database_name', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['device_type'] = $device_type;
+        $this->container['old_database_name'] = $old_database_name;
 
         return $this;
     }
 
     /**
-     * Gets database_name
+     * Gets new_database_name
      *
      * @return string|null
      */
-    public function getDatabaseName()
+    public function getNewDatabaseName()
     {
-        return $this->container['database_name'];
+        return $this->container['new_database_name'];
     }
 
     /**
-     * Sets database_name
+     * Sets new_database_name
      *
-     * @param string|null $database_name database_name
+     * @param string|null $new_database_name new_database_name
      *
      * @return self
      */
-    public function setDatabaseName($database_name)
+    public function setNewDatabaseName($new_database_name)
     {
-        if (is_null($database_name)) {
-            array_push($this->openAPINullablesSetToNull, 'database_name');
+        if (is_null($new_database_name)) {
+            array_push($this->openAPINullablesSetToNull, 'new_database_name');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('database_name', $nullablesSetToNull);
+            $index = array_search('new_database_name', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['database_name'] = $database_name;
+        $this->container['new_database_name'] = $new_database_name;
+
+        return $this;
+    }
+
+    /**
+     * Gets migration_start
+     *
+     * @return \DateTime|null
+     */
+    public function getMigrationStart()
+    {
+        return $this->container['migration_start'];
+    }
+
+    /**
+     * Sets migration_start
+     *
+     * @param \DateTime|null $migration_start migration_start
+     *
+     * @return self
+     */
+    public function setMigrationStart($migration_start)
+    {
+        if (is_null($migration_start)) {
+            throw new \InvalidArgumentException('non-nullable migration_start cannot be null');
+        }
+        $this->container['migration_start'] = $migration_start;
+
+        return $this;
+    }
+
+    /**
+     * Gets migration_end
+     *
+     * @return \DateTime|null
+     */
+    public function getMigrationEnd()
+    {
+        return $this->container['migration_end'];
+    }
+
+    /**
+     * Sets migration_end
+     *
+     * @param \DateTime|null $migration_end migration_end
+     *
+     * @return self
+     */
+    public function setMigrationEnd($migration_end)
+    {
+        if (is_null($migration_end)) {
+            array_push($this->openAPINullablesSetToNull, 'migration_end');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('migration_end', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['migration_end'] = $migration_end;
+
+        return $this;
+    }
+
+    /**
+     * Gets rows_affected
+     *
+     * @return int|null
+     */
+    public function getRowsAffected()
+    {
+        return $this->container['rows_affected'];
+    }
+
+    /**
+     * Sets rows_affected
+     *
+     * @param int|null $rows_affected rows_affected
+     *
+     * @return self
+     */
+    public function setRowsAffected($rows_affected)
+    {
+        if (is_null($rows_affected)) {
+            array_push($this->openAPINullablesSetToNull, 'rows_affected');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('rows_affected', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['rows_affected'] = $rows_affected;
 
         return $this;
     }

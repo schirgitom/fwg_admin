@@ -1,6 +1,6 @@
 <?php
 /**
- * GatewayItemResponseModel
+ * DatabaseChangeItemResponseModel
  *
  * PHP version 8.1
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \FWGCentralAPI\ObjectSerializer;
 
 /**
- * GatewayItemResponseModel Class Doc Comment
+ * DatabaseChangeItemResponseModel Class Doc Comment
  *
  * @category Class
  * @package  FWGCentralAPI
@@ -40,7 +40,7 @@ use \FWGCentralAPI\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class GatewayItemResponseModel implements ModelInterface, ArrayAccess, \JsonSerializable
+class DatabaseChangeItemResponseModel implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class GatewayItemResponseModel implements ModelInterface, ArrayAccess, \JsonSeri
       *
       * @var string
       */
-    protected static $openAPIModelName = 'GatewayItemResponseModel';
+    protected static $openAPIModelName = 'DatabaseChangeItemResponseModel';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,7 +57,7 @@ class GatewayItemResponseModel implements ModelInterface, ArrayAccess, \JsonSeri
       * @var string[]
       */
     protected static $openAPITypes = [
-        'data' => '\FWGCentralAPI\Model\Gateway',
+        'data' => '\FWGCentralAPI\Model\DatabaseChange',
         'has_error' => 'bool',
         'error_messages' => 'array<string,string>',
         'warning_messages' => 'array<string,string>',
@@ -320,7 +320,7 @@ class GatewayItemResponseModel implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets data
      *
-     * @return \FWGCentralAPI\Model\Gateway|null
+     * @return \FWGCentralAPI\Model\DatabaseChange|null
      */
     public function getData()
     {
@@ -330,7 +330,7 @@ class GatewayItemResponseModel implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets data
      *
-     * @param \FWGCentralAPI\Model\Gateway|null $data data
+     * @param \FWGCentralAPI\Model\DatabaseChange|null $data data
      *
      * @return self
      */

@@ -1,6 +1,6 @@
 <?php
 /**
- * GatewayApi
+ * DatabaseChangeApi
  * PHP version 8.1
  *
  * @category Class
@@ -43,14 +43,14 @@ use FWGCentralAPI\HeaderSelector;
 use FWGCentralAPI\ObjectSerializer;
 
 /**
- * GatewayApi Class Doc Comment
+ * DatabaseChangeApi Class Doc Comment
  *
  * @category Class
  * @package  FWGCentralAPI
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class GatewayApi
+class DatabaseChangeApi
 {
     /**
      * @var ClientInterface
@@ -74,21 +74,21 @@ class GatewayApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'apiGatewayAllGet' => [
+        'apiDatabaseChangeAllGet' => [
             'application/json',
         ],
-        'apiGatewayGetByEUIEUIGet' => [
+        'apiDatabaseChangeGetForDeviceDeviceIDGet' => [
             'application/json',
         ],
-        'apiGatewayIdGet' => [
+        'apiDatabaseChangeIdGet' => [
             'application/json',
         ],
-        'apiGatewayIdPatch' => [
+        'apiDatabaseChangeIdPatch' => [
             'application/json',
             'text/json',
             'application/*+json',
         ],
-        'apiGatewayPost' => [
+        'apiDatabaseChangePost' => [
             'application/json',
             'text/json',
             'application/*+json',
@@ -142,32 +142,32 @@ class GatewayApi
     }
 
     /**
-     * Operation apiGatewayAllGet
+     * Operation apiDatabaseChangeAllGet
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiGatewayAllGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiDatabaseChangeAllGet'] to see the possible values for this operation
      *
      * @throws \FWGCentralAPI\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \FWGCentralAPI\Model\Gateway[]
+     * @return \FWGCentralAPI\Model\DatabaseChange[]
      */
-    public function apiGatewayAllGet(string $contentType = self::contentTypes['apiGatewayAllGet'][0])
+    public function apiDatabaseChangeAllGet(string $contentType = self::contentTypes['apiDatabaseChangeAllGet'][0])
     {
-        list($response) = $this->apiGatewayAllGetWithHttpInfo($contentType);
+        list($response) = $this->apiDatabaseChangeAllGetWithHttpInfo($contentType);
         return $response;
     }
 
     /**
-     * Operation apiGatewayAllGetWithHttpInfo
+     * Operation apiDatabaseChangeAllGetWithHttpInfo
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiGatewayAllGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiDatabaseChangeAllGet'] to see the possible values for this operation
      *
      * @throws \FWGCentralAPI\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \FWGCentralAPI\Model\Gateway[], HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FWGCentralAPI\Model\DatabaseChange[], HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiGatewayAllGetWithHttpInfo(string $contentType = self::contentTypes['apiGatewayAllGet'][0])
+    public function apiDatabaseChangeAllGetWithHttpInfo(string $contentType = self::contentTypes['apiDatabaseChangeAllGet'][0])
     {
-        $request = $this->apiGatewayAllGetRequest($contentType);
+        $request = $this->apiDatabaseChangeAllGetRequest($contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -195,7 +195,7 @@ class GatewayApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\FWGCentralAPI\Model\Gateway[]',
+                        '\FWGCentralAPI\Model\DatabaseChange[]',
                         $request,
                         $response,
                     );
@@ -217,7 +217,7 @@ class GatewayApi
             }
 
             return $this->handleResponseWithDataType(
-                '\FWGCentralAPI\Model\Gateway[]',
+                '\FWGCentralAPI\Model\DatabaseChange[]',
                 $request,
                 $response,
             );
@@ -226,7 +226,7 @@ class GatewayApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\FWGCentralAPI\Model\Gateway[]',
+                        '\FWGCentralAPI\Model\DatabaseChange[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -239,16 +239,16 @@ class GatewayApi
     }
 
     /**
-     * Operation apiGatewayAllGetAsync
+     * Operation apiDatabaseChangeAllGetAsync
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiGatewayAllGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiDatabaseChangeAllGet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiGatewayAllGetAsync(string $contentType = self::contentTypes['apiGatewayAllGet'][0])
+    public function apiDatabaseChangeAllGetAsync(string $contentType = self::contentTypes['apiDatabaseChangeAllGet'][0])
     {
-        return $this->apiGatewayAllGetAsyncWithHttpInfo($contentType)
+        return $this->apiDatabaseChangeAllGetAsyncWithHttpInfo($contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -257,17 +257,17 @@ class GatewayApi
     }
 
     /**
-     * Operation apiGatewayAllGetAsyncWithHttpInfo
+     * Operation apiDatabaseChangeAllGetAsyncWithHttpInfo
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiGatewayAllGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiDatabaseChangeAllGet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiGatewayAllGetAsyncWithHttpInfo(string $contentType = self::contentTypes['apiGatewayAllGet'][0])
+    public function apiDatabaseChangeAllGetAsyncWithHttpInfo(string $contentType = self::contentTypes['apiDatabaseChangeAllGet'][0])
     {
-        $returnType = '\FWGCentralAPI\Model\Gateway[]';
-        $request = $this->apiGatewayAllGetRequest($contentType);
+        $returnType = '\FWGCentralAPI\Model\DatabaseChange[]';
+        $request = $this->apiDatabaseChangeAllGetRequest($contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -306,18 +306,18 @@ class GatewayApi
     }
 
     /**
-     * Create request for operation 'apiGatewayAllGet'
+     * Create request for operation 'apiDatabaseChangeAllGet'
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiGatewayAllGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiDatabaseChangeAllGet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function apiGatewayAllGetRequest(string $contentType = self::contentTypes['apiGatewayAllGet'][0])
+    public function apiDatabaseChangeAllGetRequest(string $contentType = self::contentTypes['apiDatabaseChangeAllGet'][0])
     {
 
 
-        $resourcePath = '/api/Gateway/All';
+        $resourcePath = '/api/DatabaseChange/All';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -382,34 +382,34 @@ class GatewayApi
     }
 
     /**
-     * Operation apiGatewayGetByEUIEUIGet
+     * Operation apiDatabaseChangeGetForDeviceDeviceIDGet
      *
-     * @param  string $eui eui (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiGatewayGetByEUIEUIGet'] to see the possible values for this operation
+     * @param  int $device_id device_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiDatabaseChangeGetForDeviceDeviceIDGet'] to see the possible values for this operation
      *
      * @throws \FWGCentralAPI\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \FWGCentralAPI\Model\Gateway
+     * @return \FWGCentralAPI\Model\DatabaseChange[]
      */
-    public function apiGatewayGetByEUIEUIGet($eui, string $contentType = self::contentTypes['apiGatewayGetByEUIEUIGet'][0])
+    public function apiDatabaseChangeGetForDeviceDeviceIDGet($device_id, string $contentType = self::contentTypes['apiDatabaseChangeGetForDeviceDeviceIDGet'][0])
     {
-        list($response) = $this->apiGatewayGetByEUIEUIGetWithHttpInfo($eui, $contentType);
+        list($response) = $this->apiDatabaseChangeGetForDeviceDeviceIDGetWithHttpInfo($device_id, $contentType);
         return $response;
     }
 
     /**
-     * Operation apiGatewayGetByEUIEUIGetWithHttpInfo
+     * Operation apiDatabaseChangeGetForDeviceDeviceIDGetWithHttpInfo
      *
-     * @param  string $eui (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiGatewayGetByEUIEUIGet'] to see the possible values for this operation
+     * @param  int $device_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiDatabaseChangeGetForDeviceDeviceIDGet'] to see the possible values for this operation
      *
      * @throws \FWGCentralAPI\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \FWGCentralAPI\Model\Gateway, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FWGCentralAPI\Model\DatabaseChange[], HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiGatewayGetByEUIEUIGetWithHttpInfo($eui, string $contentType = self::contentTypes['apiGatewayGetByEUIEUIGet'][0])
+    public function apiDatabaseChangeGetForDeviceDeviceIDGetWithHttpInfo($device_id, string $contentType = self::contentTypes['apiDatabaseChangeGetForDeviceDeviceIDGet'][0])
     {
-        $request = $this->apiGatewayGetByEUIEUIGetRequest($eui, $contentType);
+        $request = $this->apiDatabaseChangeGetForDeviceDeviceIDGetRequest($device_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -437,7 +437,7 @@ class GatewayApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\FWGCentralAPI\Model\Gateway',
+                        '\FWGCentralAPI\Model\DatabaseChange[]',
                         $request,
                         $response,
                     );
@@ -459,7 +459,7 @@ class GatewayApi
             }
 
             return $this->handleResponseWithDataType(
-                '\FWGCentralAPI\Model\Gateway',
+                '\FWGCentralAPI\Model\DatabaseChange[]',
                 $request,
                 $response,
             );
@@ -468,7 +468,7 @@ class GatewayApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\FWGCentralAPI\Model\Gateway',
+                        '\FWGCentralAPI\Model\DatabaseChange[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -481,17 +481,17 @@ class GatewayApi
     }
 
     /**
-     * Operation apiGatewayGetByEUIEUIGetAsync
+     * Operation apiDatabaseChangeGetForDeviceDeviceIDGetAsync
      *
-     * @param  string $eui (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiGatewayGetByEUIEUIGet'] to see the possible values for this operation
+     * @param  int $device_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiDatabaseChangeGetForDeviceDeviceIDGet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiGatewayGetByEUIEUIGetAsync($eui, string $contentType = self::contentTypes['apiGatewayGetByEUIEUIGet'][0])
+    public function apiDatabaseChangeGetForDeviceDeviceIDGetAsync($device_id, string $contentType = self::contentTypes['apiDatabaseChangeGetForDeviceDeviceIDGet'][0])
     {
-        return $this->apiGatewayGetByEUIEUIGetAsyncWithHttpInfo($eui, $contentType)
+        return $this->apiDatabaseChangeGetForDeviceDeviceIDGetAsyncWithHttpInfo($device_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -500,18 +500,18 @@ class GatewayApi
     }
 
     /**
-     * Operation apiGatewayGetByEUIEUIGetAsyncWithHttpInfo
+     * Operation apiDatabaseChangeGetForDeviceDeviceIDGetAsyncWithHttpInfo
      *
-     * @param  string $eui (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiGatewayGetByEUIEUIGet'] to see the possible values for this operation
+     * @param  int $device_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiDatabaseChangeGetForDeviceDeviceIDGet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiGatewayGetByEUIEUIGetAsyncWithHttpInfo($eui, string $contentType = self::contentTypes['apiGatewayGetByEUIEUIGet'][0])
+    public function apiDatabaseChangeGetForDeviceDeviceIDGetAsyncWithHttpInfo($device_id, string $contentType = self::contentTypes['apiDatabaseChangeGetForDeviceDeviceIDGet'][0])
     {
-        $returnType = '\FWGCentralAPI\Model\Gateway';
-        $request = $this->apiGatewayGetByEUIEUIGetRequest($eui, $contentType);
+        $returnType = '\FWGCentralAPI\Model\DatabaseChange[]';
+        $request = $this->apiDatabaseChangeGetForDeviceDeviceIDGetRequest($device_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -550,26 +550,26 @@ class GatewayApi
     }
 
     /**
-     * Create request for operation 'apiGatewayGetByEUIEUIGet'
+     * Create request for operation 'apiDatabaseChangeGetForDeviceDeviceIDGet'
      *
-     * @param  string $eui (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiGatewayGetByEUIEUIGet'] to see the possible values for this operation
+     * @param  int $device_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiDatabaseChangeGetForDeviceDeviceIDGet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function apiGatewayGetByEUIEUIGetRequest($eui, string $contentType = self::contentTypes['apiGatewayGetByEUIEUIGet'][0])
+    public function apiDatabaseChangeGetForDeviceDeviceIDGetRequest($device_id, string $contentType = self::contentTypes['apiDatabaseChangeGetForDeviceDeviceIDGet'][0])
     {
 
-        // verify the required parameter 'eui' is set
-        if ($eui === null || (is_array($eui) && count($eui) === 0)) {
+        // verify the required parameter 'device_id' is set
+        if ($device_id === null || (is_array($device_id) && count($device_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $eui when calling apiGatewayGetByEUIEUIGet'
+                'Missing the required parameter $device_id when calling apiDatabaseChangeGetForDeviceDeviceIDGet'
             );
         }
 
 
-        $resourcePath = '/api/Gateway/GetByEUI/{EUI}';
+        $resourcePath = '/api/DatabaseChange/GetForDevice/{DeviceID}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -579,10 +579,10 @@ class GatewayApi
 
 
         // path params
-        if ($eui !== null) {
+        if ($device_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'EUI' . '}',
-                ObjectSerializer::toPathValue($eui),
+                '{' . 'DeviceID' . '}',
+                ObjectSerializer::toPathValue($device_id),
                 $resourcePath
             );
         }
@@ -642,34 +642,34 @@ class GatewayApi
     }
 
     /**
-     * Operation apiGatewayIdGet
+     * Operation apiDatabaseChangeIdGet
      *
      * @param  int $id id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiGatewayIdGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiDatabaseChangeIdGet'] to see the possible values for this operation
      *
      * @throws \FWGCentralAPI\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \FWGCentralAPI\Model\Gateway
+     * @return \FWGCentralAPI\Model\DatabaseChange
      */
-    public function apiGatewayIdGet($id, string $contentType = self::contentTypes['apiGatewayIdGet'][0])
+    public function apiDatabaseChangeIdGet($id, string $contentType = self::contentTypes['apiDatabaseChangeIdGet'][0])
     {
-        list($response) = $this->apiGatewayIdGetWithHttpInfo($id, $contentType);
+        list($response) = $this->apiDatabaseChangeIdGetWithHttpInfo($id, $contentType);
         return $response;
     }
 
     /**
-     * Operation apiGatewayIdGetWithHttpInfo
+     * Operation apiDatabaseChangeIdGetWithHttpInfo
      *
      * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiGatewayIdGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiDatabaseChangeIdGet'] to see the possible values for this operation
      *
      * @throws \FWGCentralAPI\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \FWGCentralAPI\Model\Gateway, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FWGCentralAPI\Model\DatabaseChange, HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiGatewayIdGetWithHttpInfo($id, string $contentType = self::contentTypes['apiGatewayIdGet'][0])
+    public function apiDatabaseChangeIdGetWithHttpInfo($id, string $contentType = self::contentTypes['apiDatabaseChangeIdGet'][0])
     {
-        $request = $this->apiGatewayIdGetRequest($id, $contentType);
+        $request = $this->apiDatabaseChangeIdGetRequest($id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -697,7 +697,7 @@ class GatewayApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\FWGCentralAPI\Model\Gateway',
+                        '\FWGCentralAPI\Model\DatabaseChange',
                         $request,
                         $response,
                     );
@@ -719,7 +719,7 @@ class GatewayApi
             }
 
             return $this->handleResponseWithDataType(
-                '\FWGCentralAPI\Model\Gateway',
+                '\FWGCentralAPI\Model\DatabaseChange',
                 $request,
                 $response,
             );
@@ -728,7 +728,7 @@ class GatewayApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\FWGCentralAPI\Model\Gateway',
+                        '\FWGCentralAPI\Model\DatabaseChange',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -741,17 +741,17 @@ class GatewayApi
     }
 
     /**
-     * Operation apiGatewayIdGetAsync
+     * Operation apiDatabaseChangeIdGetAsync
      *
      * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiGatewayIdGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiDatabaseChangeIdGet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiGatewayIdGetAsync($id, string $contentType = self::contentTypes['apiGatewayIdGet'][0])
+    public function apiDatabaseChangeIdGetAsync($id, string $contentType = self::contentTypes['apiDatabaseChangeIdGet'][0])
     {
-        return $this->apiGatewayIdGetAsyncWithHttpInfo($id, $contentType)
+        return $this->apiDatabaseChangeIdGetAsyncWithHttpInfo($id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -760,18 +760,18 @@ class GatewayApi
     }
 
     /**
-     * Operation apiGatewayIdGetAsyncWithHttpInfo
+     * Operation apiDatabaseChangeIdGetAsyncWithHttpInfo
      *
      * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiGatewayIdGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiDatabaseChangeIdGet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiGatewayIdGetAsyncWithHttpInfo($id, string $contentType = self::contentTypes['apiGatewayIdGet'][0])
+    public function apiDatabaseChangeIdGetAsyncWithHttpInfo($id, string $contentType = self::contentTypes['apiDatabaseChangeIdGet'][0])
     {
-        $returnType = '\FWGCentralAPI\Model\Gateway';
-        $request = $this->apiGatewayIdGetRequest($id, $contentType);
+        $returnType = '\FWGCentralAPI\Model\DatabaseChange';
+        $request = $this->apiDatabaseChangeIdGetRequest($id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -810,26 +810,26 @@ class GatewayApi
     }
 
     /**
-     * Create request for operation 'apiGatewayIdGet'
+     * Create request for operation 'apiDatabaseChangeIdGet'
      *
      * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiGatewayIdGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiDatabaseChangeIdGet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function apiGatewayIdGetRequest($id, string $contentType = self::contentTypes['apiGatewayIdGet'][0])
+    public function apiDatabaseChangeIdGetRequest($id, string $contentType = self::contentTypes['apiDatabaseChangeIdGet'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiGatewayIdGet'
+                'Missing the required parameter $id when calling apiDatabaseChangeIdGet'
             );
         }
 
 
-        $resourcePath = '/api/Gateway/{id}';
+        $resourcePath = '/api/DatabaseChange/{id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -902,36 +902,36 @@ class GatewayApi
     }
 
     /**
-     * Operation apiGatewayIdPatch
+     * Operation apiDatabaseChangeIdPatch
      *
      * @param  int $id id (required)
-     * @param  \FWGCentralAPI\Model\Gateway|null $gateway gateway (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiGatewayIdPatch'] to see the possible values for this operation
+     * @param  \FWGCentralAPI\Model\DatabaseChange|null $database_change database_change (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiDatabaseChangeIdPatch'] to see the possible values for this operation
      *
      * @throws \FWGCentralAPI\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \FWGCentralAPI\Model\GatewayItemResponseModel
+     * @return \FWGCentralAPI\Model\DatabaseChangeItemResponseModel
      */
-    public function apiGatewayIdPatch($id, $gateway = null, string $contentType = self::contentTypes['apiGatewayIdPatch'][0])
+    public function apiDatabaseChangeIdPatch($id, $database_change = null, string $contentType = self::contentTypes['apiDatabaseChangeIdPatch'][0])
     {
-        list($response) = $this->apiGatewayIdPatchWithHttpInfo($id, $gateway, $contentType);
+        list($response) = $this->apiDatabaseChangeIdPatchWithHttpInfo($id, $database_change, $contentType);
         return $response;
     }
 
     /**
-     * Operation apiGatewayIdPatchWithHttpInfo
+     * Operation apiDatabaseChangeIdPatchWithHttpInfo
      *
      * @param  int $id (required)
-     * @param  \FWGCentralAPI\Model\Gateway|null $gateway (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiGatewayIdPatch'] to see the possible values for this operation
+     * @param  \FWGCentralAPI\Model\DatabaseChange|null $database_change (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiDatabaseChangeIdPatch'] to see the possible values for this operation
      *
      * @throws \FWGCentralAPI\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \FWGCentralAPI\Model\GatewayItemResponseModel, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FWGCentralAPI\Model\DatabaseChangeItemResponseModel, HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiGatewayIdPatchWithHttpInfo($id, $gateway = null, string $contentType = self::contentTypes['apiGatewayIdPatch'][0])
+    public function apiDatabaseChangeIdPatchWithHttpInfo($id, $database_change = null, string $contentType = self::contentTypes['apiDatabaseChangeIdPatch'][0])
     {
-        $request = $this->apiGatewayIdPatchRequest($id, $gateway, $contentType);
+        $request = $this->apiDatabaseChangeIdPatchRequest($id, $database_change, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -959,7 +959,7 @@ class GatewayApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\FWGCentralAPI\Model\GatewayItemResponseModel',
+                        '\FWGCentralAPI\Model\DatabaseChangeItemResponseModel',
                         $request,
                         $response,
                     );
@@ -981,7 +981,7 @@ class GatewayApi
             }
 
             return $this->handleResponseWithDataType(
-                '\FWGCentralAPI\Model\GatewayItemResponseModel',
+                '\FWGCentralAPI\Model\DatabaseChangeItemResponseModel',
                 $request,
                 $response,
             );
@@ -990,7 +990,7 @@ class GatewayApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\FWGCentralAPI\Model\GatewayItemResponseModel',
+                        '\FWGCentralAPI\Model\DatabaseChangeItemResponseModel',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1003,18 +1003,18 @@ class GatewayApi
     }
 
     /**
-     * Operation apiGatewayIdPatchAsync
+     * Operation apiDatabaseChangeIdPatchAsync
      *
      * @param  int $id (required)
-     * @param  \FWGCentralAPI\Model\Gateway|null $gateway (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiGatewayIdPatch'] to see the possible values for this operation
+     * @param  \FWGCentralAPI\Model\DatabaseChange|null $database_change (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiDatabaseChangeIdPatch'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiGatewayIdPatchAsync($id, $gateway = null, string $contentType = self::contentTypes['apiGatewayIdPatch'][0])
+    public function apiDatabaseChangeIdPatchAsync($id, $database_change = null, string $contentType = self::contentTypes['apiDatabaseChangeIdPatch'][0])
     {
-        return $this->apiGatewayIdPatchAsyncWithHttpInfo($id, $gateway, $contentType)
+        return $this->apiDatabaseChangeIdPatchAsyncWithHttpInfo($id, $database_change, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1023,19 +1023,19 @@ class GatewayApi
     }
 
     /**
-     * Operation apiGatewayIdPatchAsyncWithHttpInfo
+     * Operation apiDatabaseChangeIdPatchAsyncWithHttpInfo
      *
      * @param  int $id (required)
-     * @param  \FWGCentralAPI\Model\Gateway|null $gateway (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiGatewayIdPatch'] to see the possible values for this operation
+     * @param  \FWGCentralAPI\Model\DatabaseChange|null $database_change (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiDatabaseChangeIdPatch'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiGatewayIdPatchAsyncWithHttpInfo($id, $gateway = null, string $contentType = self::contentTypes['apiGatewayIdPatch'][0])
+    public function apiDatabaseChangeIdPatchAsyncWithHttpInfo($id, $database_change = null, string $contentType = self::contentTypes['apiDatabaseChangeIdPatch'][0])
     {
-        $returnType = '\FWGCentralAPI\Model\GatewayItemResponseModel';
-        $request = $this->apiGatewayIdPatchRequest($id, $gateway, $contentType);
+        $returnType = '\FWGCentralAPI\Model\DatabaseChangeItemResponseModel';
+        $request = $this->apiDatabaseChangeIdPatchRequest($id, $database_change, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1074,28 +1074,28 @@ class GatewayApi
     }
 
     /**
-     * Create request for operation 'apiGatewayIdPatch'
+     * Create request for operation 'apiDatabaseChangeIdPatch'
      *
      * @param  int $id (required)
-     * @param  \FWGCentralAPI\Model\Gateway|null $gateway (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiGatewayIdPatch'] to see the possible values for this operation
+     * @param  \FWGCentralAPI\Model\DatabaseChange|null $database_change (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiDatabaseChangeIdPatch'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function apiGatewayIdPatchRequest($id, $gateway = null, string $contentType = self::contentTypes['apiGatewayIdPatch'][0])
+    public function apiDatabaseChangeIdPatchRequest($id, $database_change = null, string $contentType = self::contentTypes['apiDatabaseChangeIdPatch'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiGatewayIdPatch'
+                'Missing the required parameter $id when calling apiDatabaseChangeIdPatch'
             );
         }
 
 
 
-        $resourcePath = '/api/Gateway/{id}';
+        $resourcePath = '/api/DatabaseChange/{id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1121,12 +1121,12 @@ class GatewayApi
         );
 
         // for model (json/xml)
-        if (isset($gateway)) {
+        if (isset($database_change)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($gateway));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($database_change));
             } else {
-                $httpBody = $gateway;
+                $httpBody = $database_change;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -1175,34 +1175,34 @@ class GatewayApi
     }
 
     /**
-     * Operation apiGatewayPost
+     * Operation apiDatabaseChangePost
      *
-     * @param  \FWGCentralAPI\Model\Gateway|null $gateway gateway (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiGatewayPost'] to see the possible values for this operation
+     * @param  \FWGCentralAPI\Model\DatabaseChange|null $database_change database_change (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiDatabaseChangePost'] to see the possible values for this operation
      *
      * @throws \FWGCentralAPI\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \FWGCentralAPI\Model\GatewayItemResponseModel
+     * @return \FWGCentralAPI\Model\DatabaseChangeItemResponseModel
      */
-    public function apiGatewayPost($gateway = null, string $contentType = self::contentTypes['apiGatewayPost'][0])
+    public function apiDatabaseChangePost($database_change = null, string $contentType = self::contentTypes['apiDatabaseChangePost'][0])
     {
-        list($response) = $this->apiGatewayPostWithHttpInfo($gateway, $contentType);
+        list($response) = $this->apiDatabaseChangePostWithHttpInfo($database_change, $contentType);
         return $response;
     }
 
     /**
-     * Operation apiGatewayPostWithHttpInfo
+     * Operation apiDatabaseChangePostWithHttpInfo
      *
-     * @param  \FWGCentralAPI\Model\Gateway|null $gateway (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiGatewayPost'] to see the possible values for this operation
+     * @param  \FWGCentralAPI\Model\DatabaseChange|null $database_change (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiDatabaseChangePost'] to see the possible values for this operation
      *
      * @throws \FWGCentralAPI\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \FWGCentralAPI\Model\GatewayItemResponseModel, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FWGCentralAPI\Model\DatabaseChangeItemResponseModel, HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiGatewayPostWithHttpInfo($gateway = null, string $contentType = self::contentTypes['apiGatewayPost'][0])
+    public function apiDatabaseChangePostWithHttpInfo($database_change = null, string $contentType = self::contentTypes['apiDatabaseChangePost'][0])
     {
-        $request = $this->apiGatewayPostRequest($gateway, $contentType);
+        $request = $this->apiDatabaseChangePostRequest($database_change, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1230,7 +1230,7 @@ class GatewayApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\FWGCentralAPI\Model\GatewayItemResponseModel',
+                        '\FWGCentralAPI\Model\DatabaseChangeItemResponseModel',
                         $request,
                         $response,
                     );
@@ -1252,7 +1252,7 @@ class GatewayApi
             }
 
             return $this->handleResponseWithDataType(
-                '\FWGCentralAPI\Model\GatewayItemResponseModel',
+                '\FWGCentralAPI\Model\DatabaseChangeItemResponseModel',
                 $request,
                 $response,
             );
@@ -1261,7 +1261,7 @@ class GatewayApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\FWGCentralAPI\Model\GatewayItemResponseModel',
+                        '\FWGCentralAPI\Model\DatabaseChangeItemResponseModel',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1274,17 +1274,17 @@ class GatewayApi
     }
 
     /**
-     * Operation apiGatewayPostAsync
+     * Operation apiDatabaseChangePostAsync
      *
-     * @param  \FWGCentralAPI\Model\Gateway|null $gateway (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiGatewayPost'] to see the possible values for this operation
+     * @param  \FWGCentralAPI\Model\DatabaseChange|null $database_change (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiDatabaseChangePost'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiGatewayPostAsync($gateway = null, string $contentType = self::contentTypes['apiGatewayPost'][0])
+    public function apiDatabaseChangePostAsync($database_change = null, string $contentType = self::contentTypes['apiDatabaseChangePost'][0])
     {
-        return $this->apiGatewayPostAsyncWithHttpInfo($gateway, $contentType)
+        return $this->apiDatabaseChangePostAsyncWithHttpInfo($database_change, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1293,18 +1293,18 @@ class GatewayApi
     }
 
     /**
-     * Operation apiGatewayPostAsyncWithHttpInfo
+     * Operation apiDatabaseChangePostAsyncWithHttpInfo
      *
-     * @param  \FWGCentralAPI\Model\Gateway|null $gateway (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiGatewayPost'] to see the possible values for this operation
+     * @param  \FWGCentralAPI\Model\DatabaseChange|null $database_change (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiDatabaseChangePost'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiGatewayPostAsyncWithHttpInfo($gateway = null, string $contentType = self::contentTypes['apiGatewayPost'][0])
+    public function apiDatabaseChangePostAsyncWithHttpInfo($database_change = null, string $contentType = self::contentTypes['apiDatabaseChangePost'][0])
     {
-        $returnType = '\FWGCentralAPI\Model\GatewayItemResponseModel';
-        $request = $this->apiGatewayPostRequest($gateway, $contentType);
+        $returnType = '\FWGCentralAPI\Model\DatabaseChangeItemResponseModel';
+        $request = $this->apiDatabaseChangePostRequest($database_change, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1343,20 +1343,20 @@ class GatewayApi
     }
 
     /**
-     * Create request for operation 'apiGatewayPost'
+     * Create request for operation 'apiDatabaseChangePost'
      *
-     * @param  \FWGCentralAPI\Model\Gateway|null $gateway (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiGatewayPost'] to see the possible values for this operation
+     * @param  \FWGCentralAPI\Model\DatabaseChange|null $database_change (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiDatabaseChangePost'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function apiGatewayPostRequest($gateway = null, string $contentType = self::contentTypes['apiGatewayPost'][0])
+    public function apiDatabaseChangePostRequest($database_change = null, string $contentType = self::contentTypes['apiDatabaseChangePost'][0])
     {
 
 
 
-        $resourcePath = '/api/Gateway';
+        $resourcePath = '/api/DatabaseChange';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1374,12 +1374,12 @@ class GatewayApi
         );
 
         // for model (json/xml)
-        if (isset($gateway)) {
+        if (isset($database_change)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($gateway));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($database_change));
             } else {
-                $httpBody = $gateway;
+                $httpBody = $database_change;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
