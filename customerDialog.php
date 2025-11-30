@@ -254,7 +254,7 @@
 
         // verhindert, dass irgendetwas das Modal schließt
         ev.preventDefault();
-        ev.stopPropagation();
+       // ev.stopPropagation();
 
         const id = btn.getAttribute('data-id');
         const action = btn.getAttribute('data-action');
