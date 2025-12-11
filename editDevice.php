@@ -215,6 +215,35 @@ include 'customerDialog.php';
         </form>
     </div>
 
+    <!-- Database Changes -->
+    <div class="container mt-5">
+        <h3 class="mb-3">Änderungsverlauf</h3>
+
+        <div id="changesLoading" class="text-center py-4">
+            <div class="spinner-border" role="status"></div>
+            <div class="mt-2 text-muted">Lade Änderungen…</div>
+        </div>
+
+        <div class="table-responsive d-none" id="changesTableWrap">
+            <table id="changesTable" class="table table-striped table-hover align-middle">
+                <thead class="table-light">
+                <tr>
+                    <th>ID</th>
+                    <th>Start</th>
+                    <th>Ende</th>
+                    <th>Von Region</th>
+                    <th>Nach Region</th>
+                    <th>Alte DB</th>
+                    <th>Neue DB</th>
+                    <th>Rows</th>
+                </tr>
+                </thead>
+                <tbody><!-- JS füllt hier ein --></tbody>
+            </table>
+        </div>
+    </div>
+
+
     <!-- TOAST -->
     <div class="position-fixed bottom-0 end-0 p-3" style="z-index:1100;">
         <div id="actionToast" class="toast border-0" role="alert">
@@ -256,6 +285,71 @@ include 'customerDialog.php';
                 showToast('Fehler: ' + err.message, 'error');
             }
         });
+
+
+        document.addEventListener("DOMContentLoaded", () => {
+
+            const heatDeviceId = "<?php echo htmlspecialchars($deviceId); ?>";
+            loadDbChanges(heatDeviceId);
+
+        });
+
+        async function loadDbChanges(deviceId) {
+            const loader = document.getElementById("changesLoading");
+            const tableWrap = document.getElementById("changesTableWrap");
+            const tbody = document.querySelector("#changesTable tbody");
+
+            loader.classList.remove("d-none");
+
+            try {
+                const res = await fetch(`getDatabaseChanges.php?id=${encodeURIComponent(deviceId)}`);
+                if (!res.ok) throw new Error("HTTP " + res.status);
+
+                const list = await res.json();
+
+                tbody.innerHTML = "";
+
+                if (!Array.isArray(list) || list.length === 0) {
+                    tbody.innerHTML = `
+                <tr><td colspan="8" class="text-center text-muted py-3">
+                    Keine Änderungen vorhanden.
+                </td></tr>`;
+                } else {
+                    list.forEach(ch => {
+                        const tr = document.createElement("tr");
+
+                        // Formatierung
+                        const start = ch.migrationStart ? new Date(ch.migrationStart).toLocaleString("de-DE") : "-";
+                        const end   = ch.migrationEnd   ? new Date(ch.migrationEnd).toLocaleString("de-DE") : "-";
+
+                        const oldRegion = ch.oldRegion?.regionName ?? ("ID " + ch.fK_OldRegion);
+                        const newRegion = ch.newRegion?.regionName ?? ("ID " + ch.fK_NewRegion);
+
+                        tr.innerHTML = `
+                    <td>${ch.id}</td>
+                    <td>${start}</td>
+                    <td>${end}</td>
+                    <td>${oldRegion}</td>
+                    <td>${newRegion}</td>
+                    <td>${ch.oldDatabaseName ?? "-"}</td>
+                    <td>${ch.newDatabaseName ?? "-"}</td>
+                    <td>${ch.rowsAffected ?? "-"}</td>
+                `;
+
+                        tbody.appendChild(tr);
+                    });
+                }
+
+                loader.classList.add("d-none");
+                tableWrap.classList.remove("d-none");
+
+            } catch (err) {
+                loader.innerHTML = `
+            <div class="text-danger">
+                Fehler beim Laden: ${err.message}
+            </div>`;
+            }
+        }
     </script>
 
 </main>
