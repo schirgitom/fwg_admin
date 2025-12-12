@@ -1,21 +1,17 @@
 </main> <!-- Hauptinhalt Ende -->
 
 <!-- ===== Footer ===== -->
-<footer class="mt-auto bg-light border-top">
-    <div class="container py-3 d-flex flex-column flex-md-row justify-content-between align-items-center">
-        <div class="text-muted small">
-            &copy; <?= date('Y') ?> FWG Admin Portal – Alle Rechte vorbehalten.
-        </div>
-
-        <div class="d-flex gap-3 small mt-2 mt-md-0">
-            <a href="index.php" class="text-muted text-decoration-none">Startseite</a>
-            <a href="settings.php" class="text-muted text-decoration-none">Einstellungen</a>
-            <a href="https://www.fwg.at" target="_blank" class="text-muted text-decoration-none">FWG Website</a>
-        </div>
+<footer class="mt-auto py-3 border-top text-center text-muted small">
+    © 2025 FWG Admin Portal – Alle Rechte vorbehalten.
+    <div>
+        <a href="index.php" class="text-decoration-none me-3">Startseite</a>
+        <a href="settings.php" class="text-decoration-none me-3">Einstellungen</a>
+        <a href="https://www.weiz.at" target="_blank" class="text-decoration-none">FWG Website</a>
     </div>
 </footer>
 
-</div> <!-- page-container END -->
+
+
 <!-- Bootstrap JS -->
 
 <!-- Bootstrap JS + Popper -->

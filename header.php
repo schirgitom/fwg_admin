@@ -1,106 +1,120 @@
-
+<?php
+function page($file) {
+    return basename($_SERVER['PHP_SELF']) === $file ? 'active' : '';
+}
+?>
 <!DOCTYPE html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
     <title>FWG Admin Portal</title>
-    <!-- Bootstrap CSS -->
+
+    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/node_modules/datatables.net-bs5/css/dataTables.bootstrap5.min.css">
 
     <style>
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            user-select: none;
+        :root {
+            --weiz-purple: #4B236A;
+            --weiz-purple-light: #A97FC8;
+            --weiz-purple-line: #6A3B8C;
+            --text-dark: #333;
+            --bg-light: #f7f7f7;
         }
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
+
+        html, body {
+            height: 100%;
         }
-        .b-example-divider {
-            width: 100%;
-            height: 3rem;
-            background-color: #0000001a;
-            border: solid rgba(0, 0, 0, 0.15);
-            border-width: 1px 0;
-            box-shadow:
-                    inset 0 0.5em 1.5em #0000001a,
-                    inset 0 0.125em 0.5em #00000026;
-        }
-        .b-example-vr {
-            flex-shrink: 0;
-            width: 1.5rem;
-            height: 100vh;
-        }
-        .bi {
-            vertical-align: -0.125em;
-            fill: currentColor;
-        }
-        .nav-scroller {
-            position: relative;
-            z-index: 2;
-            height: 2.75rem;
-            overflow-y: hidden;
-        }
-        .nav-scroller .nav {
+
+        body {
             display: flex;
-            flex-wrap: nowrap;
-            padding-bottom: 1rem;
-            margin-top: -1px;
-            overflow-x: auto;
-            text-align: center;
-            white-space: nowrap;
-            -webkit-overflow-scrolling: touch;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: var(--bg-light);
+            padding-top: 90px;
         }
-        .btn-bd-primary {
-            --bd-violet-bg: #712cf9;
-            --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
-            --bs-btn-font-weight: 600;
-            --bs-btn-color: var(--bs-white);
-            --bs-btn-bg: var(--bd-violet-bg);
-            --bs-btn-border-color: var(--bd-violet-bg);
-            --bs-btn-hover-color: var(--bs-white);
-            --bs-btn-hover-bg: #6528e0;
-            --bs-btn-hover-border-color: #6528e0;
-            --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
-            --bs-btn-active-color: var(--bs-btn-hover-color);
-            --bs-btn-active-bg: #5a23c8;
-            --bs-btn-active-border-color: #5a23c8;
+
+
+        .navbar-weiz {
+            background: white;
+            border-bottom: 2px solid var(--weiz-purple-line);
         }
-        .bd-mode-toggle {
-            z-index: 1500;
+
+        .navbar-weiz .nav-link {
+            color: var(--weiz-purple);
+            font-weight: 600;
+            text-transform: uppercase;
+            padding: 14px 20px;
+            border-bottom: 3px solid transparent;
+            transition: 0.2s;
+            letter-spacing: 0.5px;
         }
-        .bd-mode-toggle .bi {
-            width: 1em;
-            height: 1em;
+
+        .navbar-weiz .nav-link:hover {
+            border-bottom: 3px solid var(--weiz-purple-light);
         }
-        .bd-mode-toggle .dropdown-menu .active .bi {
-            display: block !important;
+
+        .navbar-weiz .nav-link.active {
+            border-bottom: 3px solid var(--weiz-purple);
         }
+
+
+
+        .nav-logo {
+            height: 28px;
+            width: auto;
+            opacity: 0.9;
+            transition: 0.2s;
+        }
+
+        .nav-logo:hover {
+            opacity: 1;
+        }
+
     </style>
-    <link href="node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
-    <link rel="stylesheet" href="/node_modules/datatables.net-bs5/css/dataTables.bootstrap5.min.css">
 </head>
+
 <body>
-<div class="page-container d-flex flex-column min-vh-100">
 
-    <!-- ===== Header ===== -->
-    <header class="border-bottom">
-        <div class="container">
-            <div class="d-flex flex-wrap justify-content-center py-3 mb-4">
+<nav class="navbar navbar-expand-lg navbar-weiz fixed-top">
+    <div class="container">
 
-                <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-decoration-none">
-                    <svg class="bi me-2" width="40" height="32" aria-hidden="true">
-                        <use xlink:href="#bootstrap"></use>
-                    </svg>
-                    <span class="fs-4">FWG Admin Portal</span>
-                </a>
+        <a class="navbar-brand fw-bold" href="/" style="color: var(--weiz-purple);">
+            FWG Admin Portal
+        </a>
 
-            </div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="mainMenu">
+
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                <li class="nav-item">
+                    <a class="nav-link <?= page('index.php') ?>" href="index.php">Dashboard</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link <?= page('devices.php') ?>" href="devices.php">Geräte</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link <?= page('customers.php') ?>" href="customers.php">Kunden</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link <?= page('regions.php') ?>" href="regions.php">Regionen</a>
+                </li>
+
+            </ul>
+
+
+            <img src="/logo.svg" alt="FWG Logo" class="nav-logo ms-3">
         </div>
-    </header>
 
-    <!-- ===== Hauptinhalt BEGINNT HIER ===== -->
-    <main class="flex-grow-1">
+
+
+    </div>
+</nav>
+
+<main class="flex-fill container mt-4">
