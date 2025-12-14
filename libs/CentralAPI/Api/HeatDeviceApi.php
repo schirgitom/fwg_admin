@@ -77,10 +77,16 @@ class HeatDeviceApi
         'apiHeatDeviceAllGet' => [
             'application/json',
         ],
+        'apiHeatDeviceAssignToCustomerDeviceIDPatch' => [
+            'application/json',
+        ],
         'apiHeatDeviceGetByDeviceIDDeviceIDGet' => [
             'application/json',
         ],
         'apiHeatDeviceGetForCustomerCustomerIDGet' => [
+            'application/json',
+        ],
+        'apiHeatDeviceGetUnAssignedDevicesGet' => [
             'application/json',
         ],
         'apiHeatDeviceIdGet' => [
@@ -384,6 +390,281 @@ class HeatDeviceApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation apiHeatDeviceAssignToCustomerDeviceIDPatch
+     *
+     * @param  int $device_id device_id (required)
+     * @param  int|null $customer_id customer_id (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiHeatDeviceAssignToCustomerDeviceIDPatch'] to see the possible values for this operation
+     *
+     * @throws \FWGCentralAPI\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return bool
+     */
+    public function apiHeatDeviceAssignToCustomerDeviceIDPatch($device_id, $customer_id = null, string $contentType = self::contentTypes['apiHeatDeviceAssignToCustomerDeviceIDPatch'][0])
+    {
+        list($response) = $this->apiHeatDeviceAssignToCustomerDeviceIDPatchWithHttpInfo($device_id, $customer_id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation apiHeatDeviceAssignToCustomerDeviceIDPatchWithHttpInfo
+     *
+     * @param  int $device_id (required)
+     * @param  int|null $customer_id (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiHeatDeviceAssignToCustomerDeviceIDPatch'] to see the possible values for this operation
+     *
+     * @throws \FWGCentralAPI\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of bool, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function apiHeatDeviceAssignToCustomerDeviceIDPatchWithHttpInfo($device_id, $customer_id = null, string $contentType = self::contentTypes['apiHeatDeviceAssignToCustomerDeviceIDPatch'][0])
+    {
+        $request = $this->apiHeatDeviceAssignToCustomerDeviceIDPatchRequest($device_id, $customer_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        'bool',
+                        $request,
+                        $response,
+                    );
+            }
+
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                'bool',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'bool',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation apiHeatDeviceAssignToCustomerDeviceIDPatchAsync
+     *
+     * @param  int $device_id (required)
+     * @param  int|null $customer_id (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiHeatDeviceAssignToCustomerDeviceIDPatch'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function apiHeatDeviceAssignToCustomerDeviceIDPatchAsync($device_id, $customer_id = null, string $contentType = self::contentTypes['apiHeatDeviceAssignToCustomerDeviceIDPatch'][0])
+    {
+        return $this->apiHeatDeviceAssignToCustomerDeviceIDPatchAsyncWithHttpInfo($device_id, $customer_id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation apiHeatDeviceAssignToCustomerDeviceIDPatchAsyncWithHttpInfo
+     *
+     * @param  int $device_id (required)
+     * @param  int|null $customer_id (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiHeatDeviceAssignToCustomerDeviceIDPatch'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function apiHeatDeviceAssignToCustomerDeviceIDPatchAsyncWithHttpInfo($device_id, $customer_id = null, string $contentType = self::contentTypes['apiHeatDeviceAssignToCustomerDeviceIDPatch'][0])
+    {
+        $returnType = 'bool';
+        $request = $this->apiHeatDeviceAssignToCustomerDeviceIDPatchRequest($device_id, $customer_id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'apiHeatDeviceAssignToCustomerDeviceIDPatch'
+     *
+     * @param  int $device_id (required)
+     * @param  int|null $customer_id (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiHeatDeviceAssignToCustomerDeviceIDPatch'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function apiHeatDeviceAssignToCustomerDeviceIDPatchRequest($device_id, $customer_id = null, string $contentType = self::contentTypes['apiHeatDeviceAssignToCustomerDeviceIDPatch'][0])
+    {
+
+        // verify the required parameter 'device_id' is set
+        if ($device_id === null || (is_array($device_id) && count($device_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $device_id when calling apiHeatDeviceAssignToCustomerDeviceIDPatch'
+            );
+        }
+
+
+
+        $resourcePath = '/api/HeatDevice/AssignToCustomer/{DeviceID}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $customer_id,
+            'CustomerID', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+
+        // path params
+        if ($device_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'DeviceID' . '}',
+                ObjectSerializer::toPathValue($device_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['text/plain', 'application/json', 'text/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'PATCH',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
@@ -855,6 +1136,246 @@ class HeatDeviceApi
                 $resourcePath
             );
         }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['text/plain', 'application/json', 'text/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation apiHeatDeviceGetUnAssignedDevicesGet
+     *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiHeatDeviceGetUnAssignedDevicesGet'] to see the possible values for this operation
+     *
+     * @throws \FWGCentralAPI\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \FWGCentralAPI\Model\HeatDevice[]
+     */
+    public function apiHeatDeviceGetUnAssignedDevicesGet(string $contentType = self::contentTypes['apiHeatDeviceGetUnAssignedDevicesGet'][0])
+    {
+        list($response) = $this->apiHeatDeviceGetUnAssignedDevicesGetWithHttpInfo($contentType);
+        return $response;
+    }
+
+    /**
+     * Operation apiHeatDeviceGetUnAssignedDevicesGetWithHttpInfo
+     *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiHeatDeviceGetUnAssignedDevicesGet'] to see the possible values for this operation
+     *
+     * @throws \FWGCentralAPI\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \FWGCentralAPI\Model\HeatDevice[], HTTP status code, HTTP response headers (array of strings)
+     */
+    public function apiHeatDeviceGetUnAssignedDevicesGetWithHttpInfo(string $contentType = self::contentTypes['apiHeatDeviceGetUnAssignedDevicesGet'][0])
+    {
+        $request = $this->apiHeatDeviceGetUnAssignedDevicesGetRequest($contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\FWGCentralAPI\Model\HeatDevice[]',
+                        $request,
+                        $response,
+                    );
+            }
+
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\FWGCentralAPI\Model\HeatDevice[]',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FWGCentralAPI\Model\HeatDevice[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation apiHeatDeviceGetUnAssignedDevicesGetAsync
+     *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiHeatDeviceGetUnAssignedDevicesGet'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function apiHeatDeviceGetUnAssignedDevicesGetAsync(string $contentType = self::contentTypes['apiHeatDeviceGetUnAssignedDevicesGet'][0])
+    {
+        return $this->apiHeatDeviceGetUnAssignedDevicesGetAsyncWithHttpInfo($contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation apiHeatDeviceGetUnAssignedDevicesGetAsyncWithHttpInfo
+     *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiHeatDeviceGetUnAssignedDevicesGet'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function apiHeatDeviceGetUnAssignedDevicesGetAsyncWithHttpInfo(string $contentType = self::contentTypes['apiHeatDeviceGetUnAssignedDevicesGet'][0])
+    {
+        $returnType = '\FWGCentralAPI\Model\HeatDevice[]';
+        $request = $this->apiHeatDeviceGetUnAssignedDevicesGetRequest($contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'apiHeatDeviceGetUnAssignedDevicesGet'
+     *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiHeatDeviceGetUnAssignedDevicesGet'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function apiHeatDeviceGetUnAssignedDevicesGetRequest(string $contentType = self::contentTypes['apiHeatDeviceGetUnAssignedDevicesGet'][0])
+    {
+
+
+        $resourcePath = '/api/HeatDevice/GetUnAssignedDevices';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
 
 
         $headers = $this->headerSelector->selectHeaders(

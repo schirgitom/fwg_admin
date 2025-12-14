@@ -174,6 +174,41 @@ include 'header.php';
     const urlParams = new URLSearchParams(window.location.search);
     const customerId = urlParams.get("id");
 
+
+    async function removeDevice(deviceId) {
+
+        const ok = await confirmModal({
+            title: "Gerät entfernen",
+            message: `
+            <p>Möchten Sie dieses Gerät wirklich vom Kunden entfernen?</p>
+            <p class="text-muted small">Diese Aktion kann rückgängig gemacht werden.</p>
+        `,
+            okText: "Entfernen",
+            okClass: "btn-danger"
+        });
+
+        if (!ok) return;
+
+        try {
+            const res = await fetch("setDeviceCustomer.php?deviceId=" + deviceId, {
+                method: "POST"
+            });
+
+            const json = await res.json();
+            if (!res.ok || json.error) {
+                throw new Error(json.message ?? "Fehler");
+            }
+
+            showToast("Gerät erfolgreich entfernt ✅", "success");
+            loadCustomerDevices();
+
+        } catch (err) {
+            showToast("Fehler: " + err.message, "error");
+        }
+    }
+
+
+
     async function loadCustomerDevices() {
         const loading = document.getElementById("loading");
         const tableWrap = document.getElementById("tableWrap");
@@ -201,10 +236,10 @@ include 'header.php';
                     ? '<span class="badge bg-success">Ja</span>'
                     : '<span class="badge bg-secondary">Nein</span>'}
                     </td>
-                    <td class="text-end">
-                        <a href="editDevice.php?id=${d.id}" class="btn btn-sm btn-outline-primary">
-                            Bearbeiten
-                        </a>
+                     <td class="text-end">
+                        <button class="btn btn-sm btn-outline-danger" onclick="removeDevice(${d.id})">
+                            Entfernen
+                        </button>
                     </td>
                 `;
 

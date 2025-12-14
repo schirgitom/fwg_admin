@@ -68,10 +68,7 @@ include 'header.php';
     const ENDPOINT = "getCustomers.php";
 
     const el = id => document.getElementById(id);
-    const showToast = msg => {
-        el("toastMsg").textContent = msg;
-        new bootstrap.Toast(el("toast")).show();
-    };
+
 
     function setLoading(on) {
         el("loading").classList.toggle("d-none", !on);
@@ -135,6 +132,37 @@ include 'header.php';
         applySearch(rows);
     }
 
+    async function removeDevice(deviceId) {
+
+        if (!confirm("Möchten Sie dieses Gerät wirklich vom Kunden entfernen?")) {
+            return;
+        }
+
+        try {
+            const res = await fetch("setDeviceCustomer.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    deviceId: deviceId,
+                    customerId: null
+                })
+            });
+
+            const json = await res.json();
+            if (!res.ok || json.error) {
+                alert("Fehler: " + (json.message ?? "Unbekannt"));
+                return;
+            }
+
+            // Neu laden
+            loadCustomerDevices();
+
+        } catch (err) {
+            alert("Fehler: " + err.message);
+        }
+    }
+
+
     function applySearch(rows) {
         const q = el("searchBox").value.toLowerCase();
         const tbody = document.querySelector("#customerTable tbody");
@@ -158,6 +186,8 @@ include 'header.php';
                     <a href="editCustomer.php?id=${c.id}"
                        class="btn btn-sm btn-outline-primary">Bearbeiten</a>
                 </td>
+
+
             `;
                 tbody.appendChild(tr);
             });
