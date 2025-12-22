@@ -7,51 +7,60 @@ use App\Settings;
 
 header('Content-Type: application/json; charset=utf-8');
 
-// Config
+// ================== CONFIG ==================
 $appConfig = require __DIR__ . '/config/config.php';
 Settings::init($appConfig);
 $apiBase = Settings::get("CentralAPI");
 
-// Parameter lesen
-$deviceId   = $_GET['deviceId']   ?? null;
-$customerId = $_GET['customerId'] ?? null; // leer/null = entfernen
+// ================== INPUT (JSON BODY) ==================
+$raw = file_get_contents('php://input');
+$data = json_decode($raw, true);
+
+$deviceId   = $data['deviceId']   ?? null;
+$customerId = $data['customerId'] ?? null; // null = entfernen
+$regionId   = $data['regionId']   ?? null;
 
 if (!$deviceId) {
     http_response_code(400);
     echo json_encode([
         'error' => true,
-        'message' => 'deviceId fehlt'
+        'message' => 'Device ID fehlt'
     ]);
     exit;
 }
 
-// API vorbereiten
+// ================== API CLIENT ==================
 $config = (new \FWGCentralAPI\Configuration())->setHost($apiBase);
 $http = new \GuzzleHttp\Client([
     'base_uri' => rtrim($apiBase, '/') . '/',
     'timeout'  => 10,
 ]);
 
+$heatApi = new \FWGCentralAPI\Api\HeatDeviceApi($http, $config);
 
-$heatApiInstance    = new \FWGCentralAPI\Api\HeatDeviceApi($http, $config);
-
-// Payload: customerId bewusst null → entfernen
+// ================== PAYLOAD ==================
 $payload = [
-    'customerId' => $customerId !== null && $customerId !== ''
-        ? (int)$customerId
-        : null
+    'customer' => $customerId !== null ? (int)$customerId : null,
+    'region'   => $regionId   !== null ? (int)$regionId   : null,
 ];
 
 try {
 
-    $heat     = $heatApiInstance->apiHeatDeviceAssignToCustomerDeviceIDPatch($deviceId, $customerId);
+    $result = $heatApi
+        ->apiHeatDeviceAssignToCustomerDeviceIDPatch(
+            $deviceId,
+            $payload   // 👈 JSON BODY
+        );
 
-    echo json_encode(['success' => $heat]);
+    echo json_encode([
+        'success' => true,
+        'data'    => $result
+    ]);
 
 } catch (Throwable $e) {
     http_response_code(500);
     echo json_encode([
-        'error' => true,
+        'error'   => true,
         'message' => $e->getMessage()
     ]);
 }

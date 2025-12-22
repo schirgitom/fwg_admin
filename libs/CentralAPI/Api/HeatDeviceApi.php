@@ -79,6 +79,8 @@ class HeatDeviceApi
         ],
         'apiHeatDeviceAssignToCustomerDeviceIDPatch' => [
             'application/json',
+            'text/json',
+            'application/*+json',
         ],
         'apiHeatDeviceGetByDeviceIDDeviceIDGet' => [
             'application/json',
@@ -400,16 +402,16 @@ class HeatDeviceApi
      * Operation apiHeatDeviceAssignToCustomerDeviceIDPatch
      *
      * @param  int $device_id device_id (required)
-     * @param  int|null $customer_id customer_id (optional)
+     * @param  \FWGCentralAPI\Model\AssignDTO|null $assign_dto assign_dto (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiHeatDeviceAssignToCustomerDeviceIDPatch'] to see the possible values for this operation
      *
      * @throws \FWGCentralAPI\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return bool
      */
-    public function apiHeatDeviceAssignToCustomerDeviceIDPatch($device_id, $customer_id = null, string $contentType = self::contentTypes['apiHeatDeviceAssignToCustomerDeviceIDPatch'][0])
+    public function apiHeatDeviceAssignToCustomerDeviceIDPatch($device_id, $assign_dto = null, string $contentType = self::contentTypes['apiHeatDeviceAssignToCustomerDeviceIDPatch'][0])
     {
-        list($response) = $this->apiHeatDeviceAssignToCustomerDeviceIDPatchWithHttpInfo($device_id, $customer_id, $contentType);
+        list($response) = $this->apiHeatDeviceAssignToCustomerDeviceIDPatchWithHttpInfo($device_id, $assign_dto, $contentType);
         return $response;
     }
 
@@ -417,16 +419,16 @@ class HeatDeviceApi
      * Operation apiHeatDeviceAssignToCustomerDeviceIDPatchWithHttpInfo
      *
      * @param  int $device_id (required)
-     * @param  int|null $customer_id (optional)
+     * @param  \FWGCentralAPI\Model\AssignDTO|null $assign_dto (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiHeatDeviceAssignToCustomerDeviceIDPatch'] to see the possible values for this operation
      *
      * @throws \FWGCentralAPI\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of bool, HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiHeatDeviceAssignToCustomerDeviceIDPatchWithHttpInfo($device_id, $customer_id = null, string $contentType = self::contentTypes['apiHeatDeviceAssignToCustomerDeviceIDPatch'][0])
+    public function apiHeatDeviceAssignToCustomerDeviceIDPatchWithHttpInfo($device_id, $assign_dto = null, string $contentType = self::contentTypes['apiHeatDeviceAssignToCustomerDeviceIDPatch'][0])
     {
-        $request = $this->apiHeatDeviceAssignToCustomerDeviceIDPatchRequest($device_id, $customer_id, $contentType);
+        $request = $this->apiHeatDeviceAssignToCustomerDeviceIDPatchRequest($device_id, $assign_dto, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -501,15 +503,15 @@ class HeatDeviceApi
      * Operation apiHeatDeviceAssignToCustomerDeviceIDPatchAsync
      *
      * @param  int $device_id (required)
-     * @param  int|null $customer_id (optional)
+     * @param  \FWGCentralAPI\Model\AssignDTO|null $assign_dto (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiHeatDeviceAssignToCustomerDeviceIDPatch'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiHeatDeviceAssignToCustomerDeviceIDPatchAsync($device_id, $customer_id = null, string $contentType = self::contentTypes['apiHeatDeviceAssignToCustomerDeviceIDPatch'][0])
+    public function apiHeatDeviceAssignToCustomerDeviceIDPatchAsync($device_id, $assign_dto = null, string $contentType = self::contentTypes['apiHeatDeviceAssignToCustomerDeviceIDPatch'][0])
     {
-        return $this->apiHeatDeviceAssignToCustomerDeviceIDPatchAsyncWithHttpInfo($device_id, $customer_id, $contentType)
+        return $this->apiHeatDeviceAssignToCustomerDeviceIDPatchAsyncWithHttpInfo($device_id, $assign_dto, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -521,16 +523,16 @@ class HeatDeviceApi
      * Operation apiHeatDeviceAssignToCustomerDeviceIDPatchAsyncWithHttpInfo
      *
      * @param  int $device_id (required)
-     * @param  int|null $customer_id (optional)
+     * @param  \FWGCentralAPI\Model\AssignDTO|null $assign_dto (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiHeatDeviceAssignToCustomerDeviceIDPatch'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiHeatDeviceAssignToCustomerDeviceIDPatchAsyncWithHttpInfo($device_id, $customer_id = null, string $contentType = self::contentTypes['apiHeatDeviceAssignToCustomerDeviceIDPatch'][0])
+    public function apiHeatDeviceAssignToCustomerDeviceIDPatchAsyncWithHttpInfo($device_id, $assign_dto = null, string $contentType = self::contentTypes['apiHeatDeviceAssignToCustomerDeviceIDPatch'][0])
     {
         $returnType = 'bool';
-        $request = $this->apiHeatDeviceAssignToCustomerDeviceIDPatchRequest($device_id, $customer_id, $contentType);
+        $request = $this->apiHeatDeviceAssignToCustomerDeviceIDPatchRequest($device_id, $assign_dto, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -572,13 +574,13 @@ class HeatDeviceApi
      * Create request for operation 'apiHeatDeviceAssignToCustomerDeviceIDPatch'
      *
      * @param  int $device_id (required)
-     * @param  int|null $customer_id (optional)
+     * @param  \FWGCentralAPI\Model\AssignDTO|null $assign_dto (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiHeatDeviceAssignToCustomerDeviceIDPatch'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function apiHeatDeviceAssignToCustomerDeviceIDPatchRequest($device_id, $customer_id = null, string $contentType = self::contentTypes['apiHeatDeviceAssignToCustomerDeviceIDPatch'][0])
+    public function apiHeatDeviceAssignToCustomerDeviceIDPatchRequest($device_id, $assign_dto = null, string $contentType = self::contentTypes['apiHeatDeviceAssignToCustomerDeviceIDPatch'][0])
     {
 
         // verify the required parameter 'device_id' is set
@@ -597,15 +599,6 @@ class HeatDeviceApi
         $httpBody = '';
         $multipart = false;
 
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $customer_id,
-            'CustomerID', // param base name
-            'integer', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
 
 
         // path params
@@ -625,7 +618,14 @@ class HeatDeviceApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if (isset($assign_dto)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($assign_dto));
+            } else {
+                $httpBody = $assign_dto;
+            }
+        } elseif (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {

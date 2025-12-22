@@ -38,6 +38,9 @@ try {
 
     // Abrufen
     $list = $customerApi->apiHeatDeviceGetForCustomerCustomerIDGet($deviceId);
+    $regionApi = new \FWGCentralAPI\Api\RegionApi($http, $config);
+    $regions   = $regionApi->apiRegionAllGet();
+//
 
     // Robust in Arrays wandeln
     $toArray = function ($v) {
@@ -46,7 +49,21 @@ try {
         return json_decode(json_encode($v), true);
     };
 
+    $regionsArr = array_map($toArray, $regions);
+    $regionMap = [];
+    foreach ($regionsArr as $r) {
+        $regionMap[$r['id']] = $r['regionName'];
+    }
+
     $result = array_map($toArray, $list);
+
+    foreach ($result as &$device) {
+        $rid = $device['fK_Region'] ?? null;
+        $device['regionName'] = $rid && isset($regionMap[$rid])
+            ? $regionMap[$rid]
+            : null;
+    }
+    unset($device);
 
     echo json_encode($result, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 } catch (\Throwable $e) {

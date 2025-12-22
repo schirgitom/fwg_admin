@@ -39,7 +39,7 @@ include 'header.php';
 
         <!-- Neues Gerät anlegen -->
         <div class="col-12 col-sm-6 col-lg-4">
-            <a href="newDevice.php" class="text-decoration-none text-dark">
+            <a href="createDevice.php" class="text-decoration-none text-dark">
                 <div class="card tile p-4 h-100">
                     <div class="tile-icon text-success mb-2">
                         <i class="bi bi-plus-circle"></i>
@@ -63,7 +63,7 @@ include 'header.php';
             </a>
         </div>
 
-        <!-- Regionen verwalten -->
+   <!--
         <div class="col-12 col-sm-6 col-lg-4">
             <a href="regions.php" class="text-decoration-none text-dark">
                 <div class="card tile p-4 h-100">
@@ -76,7 +76,6 @@ include 'header.php';
             </a>
         </div>
 
-        <!-- Logs -->
         <div class="col-12 col-sm-6 col-lg-4">
             <a href="logs.php" class="text-decoration-none text-dark">
                 <div class="card tile p-4 h-100">
@@ -89,7 +88,7 @@ include 'header.php';
             </a>
         </div>
 
-        <!-- Einstellungen -->
+
         <div class="col-12 col-sm-6 col-lg-4">
             <a href="settings.php" class="text-decoration-none text-dark">
                 <div class="card tile p-4 h-100">
@@ -101,9 +100,88 @@ include 'header.php';
                 </div>
             </a>
         </div>
+-->
 
+
+        <hr class="my-5">
+
+        <h3 class="mb-3 text-center">Service-Status</h3>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+
+                <ul class="list-group" id="healthList">
+                    <li class="list-group-item d-flex justify-content-between align-items-center"
+                        data-url="http://10.150.20.104:7214/health">
+                        Zentrale Datenhaltung
+                        <span class="badge bg-secondary">prüfe …</span>
+                    </li>
+
+                    <li class="list-group-item d-flex justify-content-between align-items-center"
+                        data-url="http://10.150.20.107:7215/health">
+                        Decoder
+                        <span class="badge bg-secondary">prüfe …</span>
+                    </li>
+
+                    <li class="list-group-item d-flex justify-content-between align-items-center"
+                        data-url="http://10.150.20.108:7216/health">
+                        Datenspeicherung
+                        <span class="badge bg-secondary">prüfe …</span>
+                    </li>
+
+                    <li class="list-group-item d-flex justify-content-between align-items-center"
+                        data-url="http://10.150.20.109:7217/health">
+                        Heidi Interface
+                        <span class="badge bg-secondary">prüfe …</span>
+                    </li>
+                </ul>
+
+                <p class="text-muted mt-2 text-center" style="font-size: 0.9rem">
+                    Automatische Prüfung alle 30 Sekunden
+                </p>
+
+            </div>
+        </div>
     </div>
 </main>
+
+
+<script>
+    async function checkHealth() {
+        const items = document.querySelectorAll('#healthList li');
+
+        for (const item of items) {
+            const url = item.dataset.url;
+            const badge = item.querySelector('.badge');
+
+            badge.className = 'badge bg-secondary';
+            badge.textContent = 'prüfe …';
+
+            try {
+                const res = await fetch('healthcheck.php?url=' + encodeURIComponent(url));
+                const data = await res.json();
+
+                if (data.ok) {
+                    badge.className = 'badge bg-success';
+                    badge.innerHTML = '● OK';
+                } else {
+                    badge.className = 'badge bg-danger';
+                    badge.innerHTML = '● Nicht erreichbar';
+                }
+            } catch (e) {
+                badge.className = 'badge bg-danger';
+                badge.innerHTML = '● Nicht erreichbar';
+            }
+        }
+    }
+
+    // sofort prüfen
+    checkHealth();
+
+    // alle 30 Sekunden erneut
+    setInterval(checkHealth, 30000);
+</script>
+
 
 <?php
 include 'footer.php';

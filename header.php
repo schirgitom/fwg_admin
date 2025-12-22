@@ -102,9 +102,9 @@ function page($file) {
                     <a class="nav-link <?= page('customers.php') ?>" href="customers.php">Kunden</a>
                 </li>
 
-                <li class="nav-item">
+               <!-- <li class="nav-item">
                     <a class="nav-link <?= page('regions.php') ?>" href="regions.php">Regionen</a>
-                </li>
+                </li>-->
 
             </ul>
 

@@ -17,6 +17,11 @@ include 'header.php';
                 <input id="searchBox" type="search" class="form-control"
                        placeholder="z. B. Name, Kundennummer, Adresse …">
             </div>
+            <div class="col-md-6 text-end">
+            <a class="btn btn-outline-success btn-sm" id="btnAddDevice" href="createCustomer.php">
+                + Kunde hinzufügen
+            </a>
+            </div>
         </div>
 
         <!-- Tabelle -->

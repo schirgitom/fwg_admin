@@ -5,8 +5,8 @@
     © 2025 FWG Admin Portal – Alle Rechte vorbehalten.
     <div>
         <a href="index.php" class="text-decoration-none me-3">Startseite</a>
-        <a href="settings.php" class="text-decoration-none me-3">Einstellungen</a>
-        <a href="https://www.weiz.at" target="_blank" class="text-decoration-none">FWG Website</a>
+      <!-- <a href="settings.php" class="text-decoration-none me-3">Einstellungen</a>
+        <a href="https://www.weiz.at" target="_blank" class="text-decoration-none">FWG Website</a>-->
     </div>
 </footer>
 

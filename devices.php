@@ -11,6 +11,9 @@ use App\Settings;
             <h1 class="h3 mb-0">Geräte</h1>
             <div>
                 <button id="btnRefresh" class="btn btn-outline-primary btn-sm">Neu laden</button>
+                <a class="btn btn-outline-success btn-sm"  href="createDevice.php">
+                    + Gerät hinzufügen
+                </a>
             </div>
         </div>
 
@@ -94,13 +97,7 @@ include 'footer.php';
 
     // ====== Utils ======
     const el = (id) => document.getElementById(id);
-    const showToast = (msg, type='danger') => {
-        const t = el('toast');
-        t.classList.remove('text-bg-danger','text-bg-success','text-bg-info');
-        t.classList.add('text-bg-' + type);
-        el('toastMsg').textContent = msg;
-        new bootstrap.Toast(t).show();
-    };
+
     const setLoading = (on) => {
         el('loading').classList.toggle('d-none', !on);
         el('devicesTable').classList.toggle('d-none', on);
