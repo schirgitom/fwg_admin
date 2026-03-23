@@ -209,7 +209,13 @@
     function renderCustomerRows(rows) {
         const tb = $('customerTable').querySelector('tbody');
         tb.innerHTML = '';
-        for (const c of rows) {
+        const sortedRows = [...rows].sort((a, b) => {
+            const aIsTemp = String(a.name || '').trim().toLowerCase() === 'temp';
+            const bIsTemp = String(b.name || '').trim().toLowerCase() === 'temp';
+            if (aIsTemp !== bIsTemp) return aIsTemp ? -1 : 1;
+            return 0;
+        });
+        for (const c of sortedRows) {
             const tr = document.createElement('tr');
             tr.innerHTML = `
         <td class="text-nowrap">${escapeHtml(c.customerNumber)}</td>
@@ -218,7 +224,7 @@
    <td>${escapeHtml(c.sendToHeidi ?? '')}</td>
          <td class="text-end">
            <div class="btn-group">
-          <button type="button" class="btn btn-sm btn-outline-secondary" data-id="${c.id}">Auswählen</button>
+          <button type="button" class="btn btn-sm btn-outline-secondary" data-id="${c.id}" data-action="pick">Auswählen</button>
             <button type="button" class="btn btn-sm btn-outline-primary"   data-id="${c.id}" data-action="edit">Bearbeiten</button>
             </div>
         </td>
